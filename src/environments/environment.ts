@@ -1,9 +1,48 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import packageJson from '../../package.json';
 
-export const environment = {
-  production: false
+import { IApplicationInitOptions } from 'src/app/core/models';
+
+export const environment: IApplicationInitOptions = {
+  applicationName: 'test.all-hours-app',
+  applicationVersion: packageJson.version,
+  identityConfiguration: {
+    identityProvider: 'NONE',
+    redirectQueryParamsAfterSuccessfulAuthentication: null,
+    redirectUrlAfterSuccessfulAuthentication: [],
+    resetPasswordUrl: [],
+  },
+  loggingLevel: 'DEBUG',
+  production: false,
+  selectedTheme: {
+    class: 'all-hours-light-theme',
+    icon: 'emoji_objects',
+    logoInContrastColor: '',
+    logoInPrimaryColor: 'z',
+    phraseId: 'theme-switch-1',
+    type: 'LIGHT',
+  },
+  supportedLocalizations: ['en-US', 'sl-SI'],
+  supportedThemes: [
+    {
+      class: 'all-hours-light-theme',
+      icon: 'emoji_objects',
+      logoInContrastColor: '',
+      logoInPrimaryColor: 'z',
+      phraseId: 'theme-switch-1',
+      type: 'LIGHT',
+    },
+    {
+      class: 'all-hours-dark-theme',
+      icon: 'nights_stay',
+      logoInContrastColor: '',
+      logoInPrimaryColor: '',
+      phraseId: 'theme-switch-2',
+      type: 'DARK',
+    },
+  ],
 };
 
 /*
