@@ -1,0 +1,11 @@
+<ng-container *ngIf="currentTheme && nextTheme">
+  <button
+    mat-button
+    (click)="themeSwitchClicked(nextTheme, currentTheme)"
+    [matTooltip]="
+      ('theme-switch-3' | i18nPhrase) + ' ' + (nextTheme.phraseId | i18nPhrase)
+    "
+  >
+    <mat-icon>{{ nextTheme?.icon }}</mat-icon>
+  </button>
+</ng-container>
