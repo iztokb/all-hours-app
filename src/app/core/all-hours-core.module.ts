@@ -23,7 +23,7 @@ import {
 } from './services';
 
 import { ApplicationHttpInterceptor } from './interceptors';
-
+import { ApplicationConfigurationGuard, BrowserGuard } from './guards';
 import { CoreEffects, CoreReducers, MetaReducers } from './store';
 import { CustomRouterSerializer } from './utils';
 import { environment } from 'src/environments/environment';
@@ -65,8 +65,10 @@ export class AllHoursCoreModule {
           useClass: ApplicationHttpInterceptor,
           multi: true,
         },
+        ApplicationConfigurationGuard,
         ApplicationHttpInterceptor,
         ApplicationInitService,
+        BrowserGuard,
         EnvironmentService,
         ErrorService,
         HttpService,
