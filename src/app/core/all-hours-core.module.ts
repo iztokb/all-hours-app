@@ -1,16 +1,19 @@
 import {
+  ErrorHandler,
   ModuleWithProviders,
   NgModule,
   Optional,
   SkipSelf,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {
   ApplicationInitService,
   EnvironmentService,
+  ErrorService,
   HttpService,
   I18nService,
   IdentityService,
@@ -19,7 +22,7 @@ import {
   StringComparisonService,
 } from './services';
 
-import { HttpInterceptor } from './interceptors';
+import { ApplicationHttpInterceptor } from './interceptors';
 
 import { CoreEffects, CoreReducers, MetaReducers } from './store';
 import { CustomRouterSerializer } from './utils';
@@ -31,6 +34,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     CommonModule,
     EffectsModule.forRoot(CoreEffects),
+    HttpClientModule,
     StoreModule.forRoot(CoreReducers, {
       metaReducers: MetaReducers,
       runtimeChecks: {
@@ -55,9 +59,16 @@ export class AllHoursCoreModule {
     return {
       ngModule: AllHoursCoreModule,
       providers: [
+        { provide: ErrorHandler, useClass: ErrorService },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ApplicationHttpInterceptor,
+          multi: true,
+        },
+        ApplicationHttpInterceptor,
         ApplicationInitService,
         EnvironmentService,
-        HttpInterceptor,
+        ErrorService,
         HttpService,
         I18nService,
         IdentityService,

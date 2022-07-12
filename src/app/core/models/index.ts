@@ -1,5 +1,6 @@
 export * from './application-state.model';
 export * from './environment.model';
+export * from './error.model';
 export * from './forms-base.model';
 export * from './http.model';
 export * from './i18n.model';

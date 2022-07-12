@@ -1,6 +1,7 @@
 export * from './application-init.service';
 export * from './base.service';
 export * from './environment.service';
+export * from './error.service';
 export * from './http.service';
 export * from './i18n.service';
 export * from './identity.service';
