@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "module": "theme-switch",
+    "phrase": "Light theme"
+  },
+  {
+    "id": 2,
+    "module": "theme-switch",
+    "phrase": "Dark theme"
+  },
+  {
+    "id": 3,
+    "module": "theme-switch",
+    "phrase": "Switch to"
+  }
+]
