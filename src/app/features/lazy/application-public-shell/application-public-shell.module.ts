@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LocalizationModule } from 'src/app/features/shared/localization';
+import { ThemeSwitchModule } from 'src/app/features/shared/theme-switch';
 import { PublicShellComponent } from './containers';
 import { BrowserGuard } from 'src/app/core';
 
@@ -31,6 +36,14 @@ const MODULE_ROUTES: Routes = [
 
 @NgModule({
   declarations: [PublicShellComponent],
-  imports: [CommonModule, RouterModule.forChild(MODULE_ROUTES)],
+  imports: [
+    CommonModule,
+    LocalizationModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    RouterModule.forChild(MODULE_ROUTES),
+    ThemeSwitchModule,
+  ],
 })
 export class ApplicationPublicShellModule {}
