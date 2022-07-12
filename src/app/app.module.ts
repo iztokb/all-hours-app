@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllHoursCoreModule } from './core/all-hours-core.module';
 
 const APPLICATION_ROUTES: Routes = [
@@ -10,6 +11,14 @@ const APPLICATION_ROUTES: Routes = [
         (m) => m.ApplicationPublicShellModule
       ),
     path: '',
+  },
+  {
+    canActivate: [ApplicationConfigurationGuard],
+    loadChildren: () =>
+      import('src/app/features/lazy/application-shell').then(
+        (m) => m.ApplicationShellModule
+      ),
+    path: 'app',
   },
   {
     path: '**',
@@ -24,8 +33,9 @@ import { ApplicationConfigurationGuard } from './core';
   declarations: [AppComponent],
   imports: [
     AllHoursCoreModule.forRoot(),
-    RouterModule.forRoot(APPLICATION_ROUTES),
+    BrowserAnimationsModule,
     BrowserModule,
+    RouterModule.forRoot(APPLICATION_ROUTES),
   ],
   providers: [],
   bootstrap: [AppComponent],

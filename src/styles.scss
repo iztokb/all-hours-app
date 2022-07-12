@@ -1,4 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+ * Import material theming as this is neccessary to correctly resolve material theming on top level.
+ */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*
+ * Include theme styles for core and each component used in your app.
+ * Alternatively, you can import and @include the theme mixins for each module/component that you are using.1
+ */
+@import './assets/themes/dark.theme.scss';
+@import './assets/themes/light.theme.scss';
+
+/*
+ * Import application module themes. Specific modules/component themes shoud be defined in module.theme.scss file.
+ */
+@import './app/app.theme.scss';
+
+/*
+ * Include the base styles for Angular Material core. We include this here so that you only
+ * have to load a single css file for Angular Material in your app.
+ */
+@include mat.core();
+
+
+/*
+ * Create mixin that contains all module themes
+ */
+ @mixin modules-themes($theme) {
+  @include all-hours-app($theme);
+ }
+
+
+/*
+ * Include module themes in global scope to ensure theme consistency accross application.
+ */
+.all-hours-light-theme {
+  /*
+   * Set initial theme
+   */
+  @include mat.all-component-themes($all-hours-light-theme);
+  /*
+   * Modules themes
+   */
+  @include modules-themes($all-hours-light-theme);
+}
+
+.all-hours-dark-theme {
+  /*
+   * Set initial theme
+   */
+  @include mat.all-component-themes($all-hours-dark-theme);
+  /*
+   * Modules themes
+   */
+  @include modules-themes($all-hours-dark-theme);
+}

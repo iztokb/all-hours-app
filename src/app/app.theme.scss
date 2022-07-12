@@ -1,0 +1,18 @@
+@mixin all-hours-app($theme) {
+  // Theme collor palletes
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warning: map-get($theme, warning);
+  $background: map-get($theme, background);
+
+  // Colors
+  $primary-color: map-get($primary, 500);
+  $primary-color-100: map-get($primary, $key: 100);
+  $primary-color-200: map-get(
+    $map: $primary,
+    $key: 200,
+  );
+  $primary-contrast: map-get($primary, 500-contrast);
+
+  $background-color: map-get($background, background);
+}

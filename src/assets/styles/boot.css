@@ -1,0 +1,154 @@
+.all-hours-boot-init-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5%;
+}
+
+.all-hours-boot-spinner-container {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+  top: 40%;
+  text-align: center;
+}
+
+.all-hours-boot-spinner-container:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.all-hours-boot-boot-logo {
+  /* height: 30px; */
+  position: absolute;
+  width: 30px;
+  top: 45%;
+  left: 35%;
+}
+
+.all-hours-boot-text-container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  top: 40%;
+  text-align: center;
+}
+
+.all-hours-boot-text {
+  color: #fd7609;
+}
+
+.all-hours-boot-notification-title {
+  font-size: xx-large;
+  font-weight: 800;
+}
+
+.all-hours-boot-notification-subtitle {
+  font-size: large;
+  font-weight: 700;
+}
+
+.all-hours-boot-spinner {
+  -webkit-animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.all-hours-boot-spinner-path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 1.5s ease-in-out infinite,
+    color 6s ease-in-out infinite;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@-webkit-keyframes color {
+  100%,
+  0% {
+    stroke: #fd7609;
+  }
+  40% {
+    stroke: #fd7609;
+  }
+  66% {
+    stroke: #fd7609;
+  }
+  80%,
+  90% {
+    stroke: #fd7609;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: #fd7609;
+  }
+  40% {
+    stroke: #fd7609;
+  }
+  66% {
+    stroke: #fd7609;
+  }
+  80%,
+  90% {
+    stroke: #fd7609;
+  }
+}
