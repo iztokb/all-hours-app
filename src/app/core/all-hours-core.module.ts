@@ -20,6 +20,7 @@ import {
   SettingsService,
   StorageService,
   StringComparisonService,
+  ThemeService,
 } from './services';
 
 import { ApplicationHttpInterceptor } from './interceptors';
@@ -77,6 +78,7 @@ export class AllHoursCoreModule {
         SettingsService,
         StorageService,
         StringComparisonService,
+        ThemeService,
       ],
     };
   }

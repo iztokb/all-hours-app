@@ -86,7 +86,7 @@ export class EnvironmentEffects {
 
   resolveScreenProperties$ = createEffect(() =>
     this._actions$.pipe(
-      ofType(environmentActions.ScreenPropertiesChangedAction),
+      ofType(environmentActions.SubscribeToScreenPropertyChangesAction),
       mergeMap((_) => {
         return this._environmentService.screenResizeEvent$.pipe(
           switchMap((res) => {

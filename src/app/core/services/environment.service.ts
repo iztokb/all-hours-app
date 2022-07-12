@@ -50,10 +50,6 @@ export class EnvironmentService extends BaseService {
   screenResizeEvent$!: Observable<IScreenProperties>;
 
   /**
-   *
-   */
-
-  /**
    * OTHER PROPS
    */
   offlineEvent$!: Observable<Event>;

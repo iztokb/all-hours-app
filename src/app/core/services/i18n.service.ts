@@ -6,7 +6,7 @@ import {
   ILocalization,
   SupportedLocalizations,
 } from '../models';
-import { geti18nActiveLocalization$ } from '../store';
+import { geti18nActiveLocalization$, LoadLocalizationAction } from '../store';
 import { BaseService } from './base.service';
 import { StorageService } from './storage.service';
 
@@ -49,13 +49,14 @@ export class I18nService extends BaseService {
     localization: ILocalization,
     moduleSignature: string
   ): void {
-    /*  this._store.dispatch(
+    console.log('loadModuleLocalizations', localization, moduleSignature);
+    this._store.dispatch(
       LoadLocalizationAction({
         localization: localization?.signature,
         currentLocalization: localization?.signature,
         moduleSignature,
       })
-    ); */
+    );
   }
 
   /**

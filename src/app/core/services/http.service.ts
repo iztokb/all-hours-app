@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Store, select } from '@ngrx/store';
 import { BaseService } from './base.service';
 import { HeadersOptions, IApplicationState, IHttpHeader } from '../models';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -61,13 +61,19 @@ export class HttpService extends BaseService {
 
     // Prepeare request url
     const requestUrl: string = overideBaseUrl ? url : `${this._baseUrl}/${url}`;
-
+    console.log('request url', requestUrl);
     return this._httpClient
       .get(requestUrl, {
         headers: headers,
         observe: 'response',
       })
-      .pipe(map((response) => response.body));
+      .pipe(
+        tap((s) => {
+          console.log(s);
+          return s;
+        }),
+        map((response) => response.body)
+      );
   }
 
   post<T>(

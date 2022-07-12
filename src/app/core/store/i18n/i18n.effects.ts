@@ -106,6 +106,7 @@ export class I18nEffects {
     this._actions$.pipe(
       ofType(i18nActions.LoadLocalizationAction),
       mergeMap((req) => {
+        console.log('i18nPhrases$ effect', req);
         return this._httpService
           .get<Ii18nPhrase[]>(
             `assets/i18n/${req.moduleSignature}-${req.localization}.json`,

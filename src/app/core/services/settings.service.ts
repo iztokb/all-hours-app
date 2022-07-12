@@ -10,7 +10,9 @@ import {
 import {
   getApplicationConfiguration$,
   getInitialRoute$,
-} from '../store/settings';
+  getNextTheme$,
+  SwitchThemeAction,
+} from '../store';
 import { BaseService } from './base.service';
 import { StorageService } from './storage.service';
 
@@ -28,6 +30,12 @@ export class SettingsService extends BaseService {
 
   initiallyRequestedRoute$!: Observable<IReferredFrom | null>;
 
+  /**
+   * @description
+   * Next theme
+   */
+  nextTheme$!: Observable<ITheme | null>;
+
   constructor(
     private _store: Store<IApplicationState>,
     private _storageService: StorageService
@@ -39,6 +47,12 @@ export class SettingsService extends BaseService {
     );
 
     this.initiallyRequestedRoute$ = this._store.pipe(select(getInitialRoute$));
+
+    this.nextTheme$ = this._store.pipe(select(getNextTheme$));
+  }
+
+  changeTheme(theme: ITheme): void {
+    this._store.dispatch(SwitchThemeAction({ currentTheme: theme }));
   }
 
   resolveTheme(

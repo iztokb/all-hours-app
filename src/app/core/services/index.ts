@@ -8,3 +8,4 @@ export * from './identity.service';
 export * from './settings.service';
 export * from './storage.service';
 export * from './string-comparison.service';
+export * from './theme.service';
