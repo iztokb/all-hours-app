@@ -12,6 +12,14 @@ const MODULE_ROUTES: Routes = [
       {
         canActivate: [BrowserGuard],
         loadChildren: () =>
+          import('src/app/features/lazy/authentication').then(
+            (m) => m.AuthenticationModule
+          ),
+        path: 'authentication',
+      },
+      {
+        canActivate: [BrowserGuard],
+        loadChildren: () =>
           import('src/app/features/lazy/not-found').then(
             (m) => m.NotFoundModule
           ),
@@ -23,6 +31,6 @@ const MODULE_ROUTES: Routes = [
 
 @NgModule({
   declarations: [PublicShellComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule.forChild(MODULE_ROUTES)],
 })
 export class ApplicationPublicShellModule {}
