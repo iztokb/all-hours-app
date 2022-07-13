@@ -6,7 +6,12 @@ import {
   ILocalization,
   SupportedLocalizations,
 } from '../models';
-import { geti18nActiveLocalization$, LoadLocalizationAction } from '../store';
+import {
+  geti18nActiveLocalization$,
+  geti18nAvailableLocalizations$,
+  LoadLocalizationAction,
+  SetLocalizationAction,
+} from '../store';
 import { BaseService } from './base.service';
 import { StorageService } from './storage.service';
 
@@ -26,6 +31,12 @@ export class I18nService extends BaseService {
    */
   activeLocalization$!: Observable<ILocalization | null>;
 
+  /**
+   * @description
+   * Available localizations facade
+   */
+  availableLocalizations$!: Observable<ILocalization[]>;
+
   constructor(
     private _store: Store<IApplicationState>,
     private _storageService: StorageService
@@ -35,6 +46,10 @@ export class I18nService extends BaseService {
     this.activeLocalization$ = this._store.pipe(
       select(geti18nActiveLocalization$),
       filter((localization) => localization !== null)
+    );
+
+    this.availableLocalizations$ = this._store.pipe(
+      select(geti18nAvailableLocalizations$)
     );
   }
 
@@ -49,7 +64,6 @@ export class I18nService extends BaseService {
     localization: ILocalization,
     moduleSignature: string
   ): void {
-    console.log('loadModuleLocalizations', localization, moduleSignature);
     this._store.dispatch(
       LoadLocalizationAction({
         localization: localization?.signature,
@@ -119,5 +133,16 @@ export class I18nService extends BaseService {
      * Everything failed. Fall back to en-US
      */
     return 'en-US';
+  }
+
+  /**
+   * @description
+   * Public facade for setting new localization
+   * @param { ILocalization } localization
+   */
+  setLocalization(localization: ILocalization): void {
+    this._store.dispatch(
+      SetLocalizationAction({ localization: localization.signature })
+    );
   }
 }
