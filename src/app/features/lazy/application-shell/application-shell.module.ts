@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { ApplicationShellComponent } from './containers';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from 'src/app/core';
 
 const MODULE_ROUTES: Routes = [
   {
     component: ApplicationShellComponent,
+    canActivate: [AuthenticationGuard],
     path: '',
     /* children: [
       {
