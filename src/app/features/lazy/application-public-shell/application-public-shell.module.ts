@@ -30,6 +30,11 @@ const MODULE_ROUTES: Routes = [
           ),
         path: 'url-not-found',
       },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'authentication',
+      },
     ],
   },
 ];

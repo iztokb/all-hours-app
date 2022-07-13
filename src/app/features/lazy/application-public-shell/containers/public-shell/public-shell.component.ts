@@ -54,13 +54,8 @@ export class PublicShellComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activeLocalization$ = this._i18nService.activeLocalization$.pipe(
-      tap((s) => console.log('active locale', s))
-    );
-    this.availableLocalizations$ =
-      this._i18nService.availableLocalizations$.pipe(
-        tap((s) => console.log('available locale', s))
-      );
+    this.activeLocalization$ = this._i18nService.activeLocalization$;
+    this.availableLocalizations$ = this._i18nService.availableLocalizations$;
     this.configuration$ = this._settingsService.applicationConfiguration$;
     this.deviceEnvironment$ = this._enironmentService.deviceEnvironment$;
 
