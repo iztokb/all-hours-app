@@ -32,7 +32,12 @@
             </ng-container>
 
             <div class="locale-switch-container">
-              <app-localization-selector></app-localization-selector>
+              <app-localization-selector
+                [activeLocalization]="activeLocalization$ | async"
+                [availableLocalizations]="availableLocalizations$ | async"
+                [displayWith]="'SIGNATURE'"
+                (localizationChanged)="localizationChanged($event)"
+              ></app-localization-selector>
             </div> </mat-toolbar-row
         ></mat-toolbar>
         <div class="content-container">
