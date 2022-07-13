@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { tap } from 'rxjs';
+import { of, tap, exhaustMap, throwError, catchError, switchMap } from 'rxjs';
 import { IdentityService, StorageService } from '../../services';
 import * as identityActions from './identity.actions';
 import { RouterGoAction } from '../router';
@@ -38,70 +38,82 @@ export class IdentityEffects {
     { dispatch: false }
   );
 
-  resolveAuthenticatedIdentity$ = createEffect(
+  resolveAuthenticatedIdentity$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(identityActions.ResolveAuthenticatedIdentityAction),
+      exhaustMap((req) => {
+        const tokenInStore = this._storageService.getItemFromStorage(
+          'LOCAL_STORAGE',
+          'AUTH_TOKEN'
+        );
+
+        if (!tokenInStore) {
+          return [
+            identityActions.ResolveAuthenticatedIdentityFailedAction({
+              error: 'Token not present in storage',
+            }),
+          ];
+        }
+
+        const tokenIsValid = ValidateAccessToken(tokenInStore);
+
+        if (!tokenIsValid) {
+          return [
+            identityActions.ResolveAuthenticatedIdentityFailedAction({
+              error: 'Token in storage is not valid',
+            }),
+          ];
+        }
+
+        // Mock identity for now
+        const identity: IAuthenticatedIdentity = {
+          displayName: 'Samo Uporabnik',
+          email: 'some.uporabnik@neznani.mail',
+          emailVerified: false,
+          photoURL: '',
+          token: tokenInStore,
+          uid: GenerateGuid(),
+        };
+
+        return of(identity).pipe(
+          switchMap((res) => {
+            return [
+              identityActions.ResolveAuthenticatedIdentitySuccessAction({
+                identity: res,
+                redirectUrl: req.redirectUrl,
+              }),
+            ];
+          }),
+          catchError((error) => {
+            return [
+              identityActions.ResolveAuthenticatedIdentityFailedAction({
+                error,
+              }),
+            ];
+          })
+        );
+      })
+    )
+  );
+
+  storeAuthenticatedIdentity$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(identityActions.ResolveAuthenticatedIdentityAction),
-        tap((_) => {
-          const tokenInStore = this._storageService.getItemFromStorage(
-            'LOCAL_STORAGE',
-            'AUTH_TOKEN'
-          );
-
-          if (!tokenInStore) {
-            identityActions.ResolveAuthenticatedIdentityFailedAction({
-              error: null,
-            });
-            return;
-          }
-
-          const tokenIsValid = ValidateAccessToken(tokenInStore);
-
-          if (!tokenIsValid) {
-            identityActions.ResolveAuthenticatedIdentityFailedAction({
-              error: null,
-            });
-            return;
-          }
-
-          // Mock identity for now
-          const identity: IAuthenticatedIdentity = {
-            displayName: '',
-            email: '',
-            emailVerified: false,
-            photoURL: '',
-            token: tokenInStore,
-            uid: GenerateGuid(),
+        ofType(identityActions.StoreAuthTokenAction),
+        tap((req) => {
+          const item: IStorageItem = {
+            key: 'AUTH_TOKEN',
+            value: req.token,
           };
 
-          identityActions.SetAuthenticatedIdentityAction({ identity });
+          const tokenSaved = this._storageService.saveItemToStorage(
+            'LOCAL_STORAGE',
+            item
+          );
         })
       ),
     {
       dispatch: false,
     }
-  );
-
-  storeAuthenticatedIdentity$ = createEffect(() =>
-    this._actions$.pipe(
-      ofType(identityActions.StoreAuthTokenAction),
-      tap((req) => {
-        const item: IStorageItem = {
-          key: 'AUTH_TOKEN',
-          value: req.token,
-        };
-
-        const tokenSaved = this._storageService.saveItemToStorage(
-          'LOCAL_STORAGE',
-          item
-        );
-
-        if (tokenSaved) {
-          identityActions.ResolveAuthenticatedIdentityAction({
-            identityProvider: 'NONE',
-          });
-        }
-      })
-    )
   );
 }

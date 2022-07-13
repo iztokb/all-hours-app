@@ -16,21 +16,26 @@ export const LogoutAuthenticatedIdentitySuccessAction = createAction(
 
 export const ResolveAuthenticatedIdentityAction = createAction(
   '[Identity] Resolve authenticated identity',
-  props<{ identityProvider: IdentityProvider }>()
+  props<{ identityProvider: IdentityProvider; redirectUrl: string[] }>()
 );
 
 export const ResolveAuthenticatedIdentityFailedAction = createAction(
-  '[Identity] Authenticated identity resolved',
+  '[Identity] Resolve authenticated identity failed',
   props<{ error: unknown }>()
+);
+
+export const ResolveAuthenticatedIdentitySuccessAction = createAction(
+  '[Identity] Resolve authenticated identity success',
+  props<{ identity: IAuthenticatedIdentity; redirectUrl: string[] }>()
 );
 
 export const SetAuthenticatedIdentityAction = createAction(
   '[Identity] Set authenticated identity',
-  props<{ identity: IAuthenticatedIdentity }>()
+  props<{ identity: IAuthenticatedIdentity; redirectUrl: string[] }>()
 );
 
 export const SetPublicIdentityAction = createAction(
-  '[Identity] Set public identity',
+  '[Identity] Resolve authenticated identity success',
   props<{ visitorId: string }>()
 );
 

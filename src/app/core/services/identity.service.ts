@@ -4,9 +4,13 @@ import { Observable, skipWhile, switchMap } from 'rxjs';
 import {
   getAuthenticatedIdentity$,
   getResolvingAuthenticatedIdentityInProgress$,
+  RouterGoAction,
+  SetAuthenticatedIdentityAction,
+  StoreAuthTokenAction,
 } from '../store';
 import { IApplicationState, IAuthenticatedIdentity } from '../models';
 import { StorageService } from './storage.service';
+import { GenerateGuid, ValidateAccessToken } from '../utils';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +42,37 @@ export class IdentityService {
         return this._store.pipe(select(getAuthenticatedIdentity$));
       })
     );
+  }
+
+  setAccessToken(token: string, redirectUrl: string[]): void {
+    // First try and validate provided token
+    const tokenIsValid: boolean = ValidateAccessToken(token);
+
+    // Setup authenticated identity.
+    const identity: IAuthenticatedIdentity = {
+      displayName: 'Samo Uporabnik',
+      email: 'some.uporabnik@neznani.mail',
+      emailVerified: false,
+      photoURL: '',
+      token: token,
+      uid: GenerateGuid(),
+    };
+
+    // First store token
+    this._store.dispatch(StoreAuthTokenAction({ token: token }));
+
+    /* this._store.dispatch(
+      SetAuthenticatedIdentityAction({ identity, redirectUrl })
+    ); */
+
+    //
+
+    /* this._store.dispatch(
+      RouterGoAction({
+        path: redirectUrl,
+        extras: null,
+        query: null,
+      })
+    ); */
   }
 }

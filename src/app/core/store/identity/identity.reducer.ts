@@ -53,13 +53,16 @@ export const IdentityReducer = createReducer(
       };
     }
   ),
-  on(identityActions.SetAuthenticatedIdentityAction, (state, payload) => {
-    return {
-      ...state,
-      authenticated: payload.identity,
-      resolvingAuthenticatedIdentity: false,
-    };
-  }),
+  on(
+    identityActions.ResolveAuthenticatedIdentitySuccessAction,
+    (state, payload) => {
+      return {
+        ...state,
+        authenticated: payload.identity,
+        resolvingAuthenticatedIdentity: false,
+      };
+    }
+  ),
   on(identityActions.SetPublicIdentityAction, (state, payload) => {
     return {
       ...state,
