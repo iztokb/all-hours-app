@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "module": "authentication",
+    "phrase": "Vnesite varnostni ključ"
+  },
+  {
+    "id": 2,
+    "module": "authentication",
+    "phrase": "Prijava"
+  },
+  {
+    "id": 3,
+    "module": "authentication",
+    "phrase": "Varnostni ključ"
+  },
+  {
+    "id": 4,
+    "module": "authentication",
+    "phrase": "Prijava"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "module": "authentication",
+    "phrase": "Enter access token"
+  },
+  {
+    "id": 2,
+    "module": "authentication",
+    "phrase": "Authentication"
+  },
+  {
+    "id": 3,
+    "module": "authentication",
+    "phrase": "Access token"
+  },
+  {
+    "id": 4,
+    "module": "authentication",
+    "phrase": "Login"
+  }
+]

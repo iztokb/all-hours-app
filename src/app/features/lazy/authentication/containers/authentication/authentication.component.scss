@@ -1,0 +1,102 @@
+:host {
+  align-items: center;
+  display: grid;
+  height: 100%;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+}
+
+.authentication-container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+  justify-content: flex-start;
+  justify-items: center;
+  width: calc(100% - 32px);
+}
+
+.authentication-form-container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+  justify-content: flex-start;
+  justify-items: center;
+  width: calc(100% - 32px);
+}
+
+.field-wrapper-element {
+  width: calc(100% - 0px);
+}
+
+.form-element {
+  align-items: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  justify-items: center;
+  width: 100%;
+}
+
+.token-form-control {
+  width: 100%;
+}
+
+/**
+ * Medium screen
+ */
+ @media screen and (min-width: 600px) and (max-width: 959px) {
+  .authentication-container {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 256px;
+    justify-content: flex-start;
+    justify-items: center;
+    width: 512px;
+  }
+
+  .authentication-form-container {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 256px;
+    justify-content: flex-start;
+    justify-items: center;
+    width: 512px;
+  }
+ }
+
+ /**
+ * Large screen
+ */
+@media screen and (min-width: 959px) {
+  .authentication-container {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 256px;
+    justify-content: flex-start;
+    justify-items: center;
+    width: 512px;
+  }
+
+  .authentication-form-container {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 256px;
+    justify-content: flex-start;
+    justify-items: center;
+    width: 512px;
+  }
+}

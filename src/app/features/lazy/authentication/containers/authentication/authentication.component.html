@@ -1,1 +1,32 @@
-<p>authentication works!</p>
+<ng-container *ngIf="configuration$ | async as configuration">
+  <mat-card class="authentication-container">
+    <div class="form-element">
+      <h3>{{ "authentication-2" | i18nPhrase }}</h3>
+    </div>
+    <form class="form-element" novalidate [formGroup]="form">
+      <mat-form-field class="field-wrapper-element">
+        <mat-label>{{ "authentication-3" | i18nPhrase }}</mat-label>
+        <textarea
+          class="token-form-control"
+          matInput
+          cdkTextareaAutosize
+          [placeholder]="'authentication-1' | i18nPhrase"
+          cdkAutosizeMinRows="5"
+          cdkAutosizeMaxRows="10"
+          formControlName="token"
+        ></textarea>
+      </mat-form-field>
+      <div class="form-element">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          [disabled]="form?.get('token')?.invalid"
+          (click)="loginClicked(form?.get('token')?.value, configuration)"
+        >
+          {{ "authentication-4" | i18nPhrase }}
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</ng-container>
