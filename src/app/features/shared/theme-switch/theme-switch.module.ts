@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LocalizationModule } from 'src/app/features/shared/localization';
 import { ThemeSwitchComponent } from './containers';
+import { ModuleInitService } from './services';
 
 @NgModule({
   declarations: [ThemeSwitchComponent],
@@ -16,5 +17,6 @@ import { ThemeSwitchComponent } from './containers';
     MatIconModule,
     MatTooltipModule,
   ],
+  providers: [ModuleInitService],
 })
 export class ThemeSwitchModule {}

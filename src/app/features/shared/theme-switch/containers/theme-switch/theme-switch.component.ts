@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { ITheme } from 'src/app/core';
+import { ModuleInitService } from '../../services';
 
 @Component({
   selector: 'app-theme-switch',
@@ -54,9 +55,11 @@ export class ThemeSwitchComponent implements OnInit {
   get nextTheme() {
     return this._nextTheme;
   }
-  constructor() {}
+  constructor(private _moduleInitService: ModuleInitService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._moduleInitService.initModule();
+  }
 
   themeSwitchClicked(nextTheme: ITheme, currentTheme: ITheme): void {
     this.switchTheme.emit(nextTheme);
