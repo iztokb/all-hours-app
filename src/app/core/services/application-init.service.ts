@@ -54,15 +54,26 @@ export class ApplicationInitService
     this._store.dispatch(SubscribeToOnlineChangesAction());
 
     // Resolve theme
-    this._store.dispatch(ResolveThemeAction({defaultTheme: options.selectedTheme, storageKey: 'THEME', supportedThemes: options.supportedThemes}))
+    this._store.dispatch(
+      ResolveThemeAction({
+        defaultTheme: options.selectedTheme,
+        storageKey: 'THEME',
+        supportedThemes: options.supportedThemes,
+      })
+    );
 
     // Get core localization phrases when localization is resolved
 
     // Resolve current identity
     if (options?.identityConfiguration?.identityProvider) {
+      const redirectUrl: string[] = options?.identityConfiguration
+        ?.redirectUrlAfterSuccessfulAuthentication
+        ? options.identityConfiguration.redirectUrlAfterSuccessfulAuthentication
+        : [];
       this._store.dispatch(
         ResolveAuthenticatedIdentityAction({
           identityProvider: options?.identityConfiguration?.identityProvider,
+          redirectUrl,
         })
       );
     }

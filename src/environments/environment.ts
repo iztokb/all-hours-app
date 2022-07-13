@@ -11,7 +11,7 @@ export const environment: IApplicationInitOptions = {
   identityConfiguration: {
     identityProvider: 'NONE',
     redirectQueryParamsAfterSuccessfulAuthentication: null,
-    redirectUrlAfterSuccessfulAuthentication: [],
+    redirectUrlAfterSuccessfulAuthentication: ['../', 'app'],
     resetPasswordUrl: [],
   },
   loggingLevel: 'DEBUG',
