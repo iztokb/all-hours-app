@@ -2,8 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Store, select } from '@ngrx/store';
 import { BaseService } from './base.service';
-import { HeadersOptions, IApplicationState, IHttpHeader } from '../models';
-import { map, Observable, tap } from 'rxjs';
+import {
+  HeadersOptions,
+  IApplicationState,
+  IConfigurationProperties,
+  IHttpHeader,
+} from '../models';
+import { filter, map, Observable } from 'rxjs';
+import { getApplicationConfiguration$ } from '../store';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +17,32 @@ import { map, Observable, tap } from 'rxjs';
 export class HttpService extends BaseService {
   private _baseUrl!: string;
   private _applicationVersion!: string;
-  private _suiteVersion!: string;
 
   constructor(
     private _httpClient: HttpClient,
     private _store: Store<IApplicationState>
   ) {
     super();
+
+    const envSubscription = this._store
+      .pipe(
+        select(getApplicationConfiguration$),
+        filter((stream) => stream !== null)
+      )
+      .subscribe((envPropsStream: IConfigurationProperties | null) => {
+        if (!envPropsStream) {
+          return;
+        }
+        const isProduction = envPropsStream.production;
+
+        // Set base url
+        this._baseUrl = `api`;
+
+        // Set application version
+        this._applicationVersion = envPropsStream.applicationVersion;
+      });
+
+    this.subscriptions.push(envSubscription);
   }
 
   delete<T>(
@@ -61,19 +86,12 @@ export class HttpService extends BaseService {
 
     // Prepeare request url
     const requestUrl: string = overideBaseUrl ? url : `${this._baseUrl}/${url}`;
-    console.log('request url', requestUrl);
     return this._httpClient
       .get(requestUrl, {
         headers: headers,
         observe: 'response',
       })
-      .pipe(
-        tap((s) => {
-          console.log(s);
-          return s;
-        }),
-        map((response) => response.body)
-      );
+      .pipe(map((response) => response.body));
   }
 
   post<T>(
@@ -204,7 +222,6 @@ export class HttpService extends BaseService {
     return new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'X-Application-Version': this._applicationVersion,
-      'X-App-Version': this._suiteVersion,
     });
   }
 }
