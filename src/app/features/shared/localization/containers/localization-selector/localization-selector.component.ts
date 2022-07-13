@@ -34,9 +34,9 @@ export class LocalizationSelectorComponent implements OnInit {
    * @description
    * Currently active localization
    */
-  private _activeLocalization!: ILocalization;
+  private _activeLocalization!: ILocalization | null;
   @Input()
-  set activeLocalization(value: ILocalization) {
+  set activeLocalization(value: ILocalization | null) {
     this._activeLocalization = value;
   }
   get activeLocalization() {
@@ -47,9 +47,9 @@ export class LocalizationSelectorComponent implements OnInit {
    * @description
    * List of available localizations
    */
-  private _availableLocalizations!: ILocalization[];
+  private _availableLocalizations!: ILocalization[] | null;
   @Input()
-  set availableLocalizations(value: ILocalization[]) {
+  set availableLocalizations(value: ILocalization[] | null) {
     this._availableLocalizations = value;
   }
   get availableLocalizations() {

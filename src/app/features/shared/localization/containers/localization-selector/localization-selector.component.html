@@ -1,1 +1,72 @@
-<p>localization-selector works!</p>
+<ng-container *ngIf="availableLocalizations">
+  <ng-container *ngIf="activeLocalization">
+    <ng-container *ngIf="availableLocalizations?.length === 1">
+      <p>
+        <span *ngIf="displayWith === 'SIGNATURE'">
+          {{ activeLocalization?.signature?.substring(0, 2) }}
+        </span>
+        <span *ngIf="displayWith === 'VALUE'">
+          {{ activeLocalization?.value }}
+        </span>
+        <span *ngIf="displayWith === 'GLOBAL_NAME'">
+          {{ activeLocalization?.globalName }}
+        </span>
+      </p>
+    </ng-container>
+    <ng-container *ngIf="availableLocalizations?.length === 2">
+      <button
+        mat-button
+        type="button"
+        *ngIf="availableLocalizations?.length === 2"
+        [matTooltip]="'localization-1' | i18nPhrase"
+        (click)="
+          localizationSelected(
+            activeLocalization,
+            activeLocalization,
+            availableLocalizations
+          )
+        "
+      >
+        <span *ngIf="displayWith === 'SIGNATURE'">
+          {{ activeLocalization?.signature?.substring(0, 2) }}
+        </span>
+        <span *ngIf="displayWith === 'VALUE'">
+          {{ activeLocalization?.value }}
+        </span>
+        <span *ngIf="displayWith === 'GLOBAL_NAME'">
+          {{ activeLocalization?.globalName }}
+        </span>
+      </button>
+    </ng-container>
+
+    <ng-container
+      *ngIf="availableLocalizations && availableLocalizations.length > 2"
+    >
+      <button
+        mat-button
+        type="button"
+        [matTooltip]="'localization-1' | i18nPhrase"
+        [matMenuTriggerFor]="localization"
+      ></button>
+
+      <mat-menu #localization="matMenu">
+        <i *ngFor="let localization of availableLocalizations">
+          <button
+            mat-menu-item
+            *ngIf="localization.visible"
+            [disabled]="localization.disabled"
+            (click)="
+              localizationSelected(
+                localization,
+                activeLocalization,
+                availableLocalizations
+              )
+            "
+          >
+            {{ localization?.value }}
+          </button>
+        </i>
+      </mat-menu>
+    </ng-container>
+  </ng-container>
+</ng-container>
