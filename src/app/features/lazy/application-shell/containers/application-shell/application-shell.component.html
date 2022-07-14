@@ -52,7 +52,9 @@
         <mat-sidenav
           class="sidenav"
           position="start"
-          mode="over"
+          [mode]="
+            environment?.screen?.activeScreenSize === 'WEB' ? 'push' : 'over'
+          "
           fixedInViewport="true"
           fixedTopGap="0"
           [opened]="sidenavStatus && sidenavStatus === 'OPENED' ? true : false"
@@ -68,8 +70,47 @@
           </app-routable-item>
         </mat-sidenav>
         <mat-sidenav-content class="sidenav-container">
-          <div class="content-container">
-            <router-outlet class="hide-element"></router-outlet>
+          <div
+            [ngClass]="{
+              content:
+                sidenavStatus === 'CLOSED' ||
+                (sidenavStatus === 'OPENED' &&
+                  environment?.screen?.activeScreenSize !== 'TABLET') ||
+                environment?.screen?.activeScreenSize === 'WEB',
+              'content-with-opened-sidenav':
+                sidenavStatus !== 'CLOSED' &&
+                (environment?.screen?.activeScreenSize === 'TABLET' ||
+                  environment?.screen?.activeScreenSize === 'WEB')
+            }"
+          >
+            <div
+              class="side-menu-items-container mat-toolbar fade-in"
+              *ngIf="
+                sidenavStatus === 'CLOSED' &&
+                environment?.screen?.activeScreenSize === 'WEB'
+              "
+            >
+              <app-routable-item
+                *ngFor="let sideMenuItem of sideMenuItems$ | async"
+                [container]="sideMenuItem"
+                [mode]="'SIDE_MENU'"
+              >
+              </app-routable-item>
+            </div>
+            <div
+              [ngClass]="{
+                'content-container-with-side-menu':
+                  sidenavStatus === 'CLOSED' &&
+                  environment?.screen?.activeScreenSize === 'WEB',
+                'content-container':
+                  environment?.screen?.activeScreenSize !== 'WEB' ||
+                  (environment?.screen?.activeScreenSize === 'WEB' &&
+                    sidenavStatus !== 'CLOSED' &&
+                    environment?.screen?.activeScreenSize === 'WEB')
+              }"
+            >
+              <router-outlet class="hide-element"></router-outlet>
+            </div>
           </div>
         </mat-sidenav-content>
       </mat-sidenav-container>

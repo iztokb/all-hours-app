@@ -14,9 +14,26 @@
   width: calc(100% - 64px);
 }
 
-.content-container {
-  height: 100vh;
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   min-width: 100%;
+  padding-top: 56px;
+}
+
+.content-with-opened-sidenav {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 64px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .locale-switch-container {
@@ -77,14 +94,49 @@
    * Medium screen
    */
 @media screen and (min-width: 600px) and (max-width: 959px) {
-  .content-container {
-    margin-block-start: 64px;
-    height: calc(100vh - 64px);
+  .content {
+    display: flex;
+    flex-direction: row;
+    padding-top: 64px;
+    min-height: 100vh;
     min-width: 100%;
   }
 
+  .content-with-opened-sidenav {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 64px;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .content-with-opened-sidenav {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+
+  .content-container-with-side-menu {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 64px);
+  }
+
+  .side-menu-items-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 64px;
+    width: 64px;
+  }
+
   .sidenav {
-    width: 70%;
+    width: 75%;
   }
 }
 
@@ -92,13 +144,36 @@
    * Large screen
    */
 @media screen and (min-width: 959px) {
-  .content-container {
-    margin-block-start: 64px;
-    height: calc(100vh - 64px);
-    min-width: 100%;
+  .content {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    /* min-width: 100%; */
+    padding-top: 64px;
+  }
+
+  .content-with-opened-sidenav {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 70%;
+    padding-top: 64px;
+  }
+
+  .content-container-with-side-menu {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 64px);
+  }
+
+  .side-menu-items-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 64px;
+    width: 64px;
   }
 
   .sidenav {
-    width: 35%;
+    width: clamp(20%, 30%, 40%)
   }
 }
