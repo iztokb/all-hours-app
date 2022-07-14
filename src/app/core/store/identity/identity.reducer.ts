@@ -63,6 +63,12 @@ export const IdentityReducer = createReducer(
       };
     }
   ),
+  on(identityActions.SetAuthenticatedIdentityAction, (state, payload) => {
+    return {
+      ...state,
+      authenticated: payload.identity,
+    };
+  }),
   on(identityActions.SetPublicIdentityAction, (state, payload) => {
     return {
       ...state,

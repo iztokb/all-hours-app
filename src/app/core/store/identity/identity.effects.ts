@@ -96,6 +96,25 @@ export class IdentityEffects {
     )
   );
 
+  setAuthenticatedIdentity$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(identityActions.SetAuthenticatedIdentityAction),
+      exhaustMap((req) => {
+        return of(req).pipe(
+          switchMap((res) => {
+            return [
+              RouterGoAction({
+                path: res.redirectUrl,
+                extras: null,
+                query: null,
+              }),
+            ];
+          })
+        );
+      })
+    )
+  );
+
   storeAuthenticatedIdentity$ = createEffect(
     () =>
       this._actions$.pipe(

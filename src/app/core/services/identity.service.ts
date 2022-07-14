@@ -61,9 +61,9 @@ export class IdentityService {
     // First store token
     this._store.dispatch(StoreAuthTokenAction({ token: token }));
 
-    /* this._store.dispatch(
+    this._store.dispatch(
       SetAuthenticatedIdentityAction({ identity, redirectUrl })
-    ); */
+    );
 
     //
 
