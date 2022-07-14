@@ -1,5 +1,6 @@
 import { RouterReducerState } from '@ngrx/router-store';
 import { IApplicationEnvironmentState } from './environment.model';
+import { IGlobalNavigationState } from './global-navigation.model';
 import { Ii18nState, SupportedLocalizations } from './i18n.model';
 import { IIdentityConfiguration, IIdentityState } from './identity.model';
 import { LogType } from './logger.model';
@@ -29,6 +30,7 @@ export interface IApplicationInitOptions {
  */
 export interface IApplicationState {
   environment: IApplicationEnvironmentState;
+  global_navigation: IGlobalNavigationState;
   i18n: Ii18nState;
   identity: IIdentityState;
   router: RouterReducerState<IRouterState>;

@@ -8,6 +8,10 @@ import * as fromRouter from '@ngrx/router-store';
 
 import { IApplicationState, IRouterState } from '../models';
 import { EnvironmentEffects, EnvironmentReducer } from './environment';
+import {
+  GlobalNavigationEffects,
+  GlobalNavigationReducer,
+} from './global-navigation';
 import { I18nEffects, I18nReducer } from './i18n';
 import { IdentityEffects, IdentityReducer } from './identity';
 import { RouterEffects } from './router';
@@ -18,6 +22,7 @@ import { SettingsEffects, SettingsReducer } from './settings';
  */
 export const CoreReducers: ActionReducerMap<IApplicationState> = {
   environment: EnvironmentReducer,
+  global_navigation: GlobalNavigationReducer,
   i18n: I18nReducer,
   identity: IdentityReducer,
   router: fromRouter.routerReducer,
@@ -34,6 +39,7 @@ export const MetaReducers: MetaReducer<IApplicationState>[] = [];
  */
 export const CoreEffects = [
   EnvironmentEffects,
+  GlobalNavigationEffects,
   I18nEffects,
   IdentityEffects,
   RouterEffects,
@@ -44,6 +50,7 @@ export const CoreEffects = [
  * PUBLIC API
  */
 export * from './environment';
+export * from './global-navigation';
 export * from './i18n';
 export * from './identity';
 export * from './router';
