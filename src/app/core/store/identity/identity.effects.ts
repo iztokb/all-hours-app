@@ -7,39 +7,32 @@ import * as identityActions from './identity.actions';
 import { RouterGoAction } from '../router';
 import { GenerateGuid, ValidateAccessToken } from '../../utils';
 import { IAuthenticatedIdentity, IStorageItem } from '../../models';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class IdentityEffects {
   constructor(
+    private _router: Router,
     private _actions$: Actions,
     private _storageService: StorageService,
     private _identityService: IdentityService
   ) {}
 
-  logoutAuthenticatedIdentity$ = createEffect(() =>
-    this._actions$.pipe(
-      ofType(identityActions.LogoutAuthenticatedIdentityAction),
-      exhaustMap((req) => {
-        return of(req).pipe(
-          tap((s) => {
-            // Remove token from storage
-            this._storageService.deleteItemFromStorage(
-              'LOCAL_STORAGE',
-              'AUTH_TOKEN'
-            );
-          }),
-          switchMap((res) => {
-            return [
-              RouterGoAction({
-                path: ['../authentication'],
-                extras: null,
-                query: { logout: true },
-              }),
-            ];
-          })
-        );
-      })
-    )
+  logoutAuthenticatedIdentity$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(identityActions.LogoutAuthenticatedIdentityAction),
+        tap((req) => {
+          // Remove token from storage
+          this._storageService.deleteItemFromStorage(
+            'LOCAL_STORAGE',
+            'AUTH_TOKEN'
+          );
+
+          this._router.navigateByUrl('/');
+        })
+      ),
+    { dispatch: false }
   );
 
   resolveAuthenticatedIdentity$ = createEffect(() =>

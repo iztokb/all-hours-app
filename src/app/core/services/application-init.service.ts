@@ -31,7 +31,7 @@ export class ApplicationInitService
   initApplication(options: IApplicationInitOptions): void {
     console.log(
       `%c*** ©${new Date().getFullYear()} Application developed by Iztok Berdnik. All right reserved. ***`,
-      'color: black; font-style: italic; background-color: #FFC107;padding: 2px'
+      'color: black; font-style: italic; background-color: #03a9f4;padding: 2px'
     );
 
     // Resolve configuration properties
