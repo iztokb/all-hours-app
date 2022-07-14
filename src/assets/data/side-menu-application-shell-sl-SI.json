@@ -1,0 +1,35 @@
+[
+  {
+    "description": "Seznam uporabnikov",
+    "icon": "people",
+    "id": 1,
+    "name": "Seznam uporabnikov",
+    "params": null,
+    "path": ["app", "users"],
+    "sortingOrder": 1,
+    "subItems": null,
+    "url": "users"
+  },
+  {
+    "description": "Seznam odsotnosti",
+    "icon": "event",
+    "id": 2,
+    "name": "Seznam odsotnosti",
+    "params": null,
+    "path": ["app", "absences"],
+    "sortingOrder": 2,
+    "subItems": null,
+    "url": "absences"
+  },
+  {
+    "description": "Nastavitve",
+    "icon": "settings",
+    "id": 3,
+    "name": "Nastavitve",
+    "params": null,
+    "path": ["app", "settings"],
+    "sortingOrder": 3,
+    "subItems": null,
+    "url": "settings"
+  }
+]

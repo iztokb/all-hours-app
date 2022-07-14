@@ -18,6 +18,15 @@
             'sticky-toolbar': environment?.screen?.activeScreenSize === 'WEB'
           }"
           ><mat-toolbar-row>
+            <div class="main-menu-command-container">
+              <button
+                mat-icon-button
+                [matTooltip]="'application-shell-1' | i18nPhrase"
+                (click)="toggleSidenav()"
+              >
+                <mat-icon>menu</mat-icon>
+              </button>
+            </div>
             <div class="app-title">{{ configuration?.applicationName }}</div>
             <ng-container *ngIf="configuration?.selectedTheme as selectedTheme">
               <ng-container *ngIf="nextTheme$ | async as nextTheme">

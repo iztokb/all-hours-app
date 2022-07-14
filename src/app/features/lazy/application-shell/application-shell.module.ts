@@ -8,6 +8,9 @@ import { LocalizationModule } from 'src/app/features/shared/localization';
 import { ThemeSwitchModule } from 'src/app/features/shared/theme-switch';
 import { AuthenticationGuard } from 'src/app/core';
 import { ApplicationShellComponent } from './containers';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { ModuleInitService } from './services';
 
 const MODULE_ROUTES: Routes = [
   {
@@ -41,10 +44,13 @@ const MODULE_ROUTES: Routes = [
     CommonModule,
     LocalizationModule,
     MatButtonModule,
+    MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatTooltipModule,
     RouterModule.forChild(MODULE_ROUTES),
     ThemeSwitchModule,
   ],
+  providers: [ModuleInitService],
 })
 export class ApplicationShellModule {}

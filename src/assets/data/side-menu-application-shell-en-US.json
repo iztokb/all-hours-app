@@ -1,0 +1,35 @@
+[
+  {
+    "description": "List of users",
+    "icon": "people",
+    "id": 1,
+    "name": "Users",
+    "params": null,
+    "path": ["app", "users"],
+    "sortingOrder": 1,
+    "subItems": null,
+    "url": "users"
+  },
+  {
+    "description": "List of absences",
+    "icon": "event",
+    "id": 2,
+    "name": "Absences",
+    "params": null,
+    "path": ["app", "absences"],
+    "sortingOrder": 2,
+    "subItems": null,
+    "url": "absences"
+  },
+  {
+    "description": "Manage settings",
+    "icon": "settings",
+    "id": 3,
+    "name": "Settings",
+    "params": null,
+    "path": ["app", "settings"],
+    "sortingOrder": 3,
+    "subItems": null,
+    "url": "settings"
+  }
+]

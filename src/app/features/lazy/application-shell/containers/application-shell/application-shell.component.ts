@@ -9,6 +9,7 @@ import {
   I18nService,
   EnvironmentService,
 } from 'src/app/core';
+import { ModuleInitService } from '../../services';
 
 @Component({
   selector: 'app-application-shell',
@@ -49,10 +50,12 @@ export class ApplicationShellComponent implements OnInit {
   constructor(
     private _enironmentService: EnvironmentService,
     private _i18nService: I18nService,
-    private _settingsService: SettingsService
+    private _settingsService: SettingsService,
+    private _moduleInitService: ModuleInitService
   ) {}
 
   ngOnInit(): void {
+    this._moduleInitService.initModule();
     this.activeLocalization$ = this._i18nService.activeLocalization$;
     this.availableLocalizations$ = this._i18nService.availableLocalizations$;
     this.configuration$ = this._settingsService.applicationConfiguration$;
@@ -68,4 +71,6 @@ export class ApplicationShellComponent implements OnInit {
   themeChanged(theme: ITheme): void {
     this._settingsService.changeTheme(theme);
   }
+
+  toggleSidenav() {}
 }

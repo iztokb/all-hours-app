@@ -32,6 +32,14 @@
   object-fit: scale-down;
 }
 
+.main-menu-command-container {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: flex-start;
+  width: 64px;
+}
+
 .sidenav-container {
   width: 100vw;
 }
