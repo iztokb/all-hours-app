@@ -3,16 +3,61 @@
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warning: map-get($theme, warning);
-  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
 
   // Colors
   $primary-color: map-get($primary, 500);
+  $primary-color-50: map-get($primary, $key: 50);
   $primary-color-100: map-get($primary, $key: 100);
-  $primary-color-200: map-get(
-    $map: $primary,
-    $key: 200,
-  );
+  $primary-color-200: map-get($primary, $key: 200);
   $primary-contrast: map-get($primary, 500-contrast);
+  $foreground-color: map-get(
+    $map: $foreground,
+    $key: text,
+  );
 
-  $background-color: map-get($background, background);
+  .active-route {
+    background-color: $primary-color-200;
+  }
+
+  .foreground-text {
+    color: $foreground-color;
+  }
+
+  .list-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  .list-item:hover {
+    box-shadow: 1px 1px 8px 2px $primary-color-100;
+  }
+
+  .navigable-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .navigable-item-side-menu {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    min-height: 64px;
+    justify-content: center;
+    text-decoration: none;
+    width: 64px;
+  }
+
+  .navigable-item-side-menu:hover {
+    background-color: $primary-color-50;
+  }
+
+  .round-border-without-shadow {
+    border-radius: 50%;
+    border: 2px solid $primary-color;
+  }
 }

@@ -1,0 +1,73 @@
+:host {
+  margin: 0px;
+  width: auto;
+  height: auto;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
+
+.module-content-container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.module-icon-large {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  font-size: 3em;
+  height: 64px;
+  justify-content: space-around;
+  width: 64px;
+}
+
+.side-menu-item-icon {
+  align-content: center;
+  display: flex;
+  // font-size: 1em;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+
+.module-icon-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 96px;
+}
+
+.sub-items-container {
+  padding-left: 16px;
+}
+
+.subtitle-container {
+  display: flex;
+}
+
+.title-container {
+  display: flex;
+}
+
+/**
+   * SM DEVICES
+   */
+@media screen and (min-width: 600px) and (max-width: 959px) {
+}
+
+/**
+   * LG DEVICES
+   */
+@media screen and (min-width: 959px) {
+}

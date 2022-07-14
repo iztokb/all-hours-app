@@ -1,58 +1,78 @@
-<mat-sidenav-container hasBackdrop="true" class="mat-theme">
-  <mat-sidenav
-    position="start"
-    mode="over"
-    fixedInViewport="true"
-    fixedTopGap="0"
-  >
-    <mat-toolbar color="primary">
-      <mat-toolbar-row></mat-toolbar-row>
-    </mat-toolbar>
-  </mat-sidenav>
-  <mat-sidenav-content class="sidenav-container">
-    <ng-container *ngIf="deviceEnvironment$ | async as environment">
-      <ng-container *ngIf="configuration$ | async as configuration">
-        <mat-toolbar
-          color="primary"
-          [ngClass]="{
-            'sticky-toolbar': environment?.screen?.activeScreenSize === 'WEB'
-          }"
-          ><mat-toolbar-row>
-            <div class="main-menu-command-container">
-              <button
-                mat-icon-button
-                [matTooltip]="'application-shell-1' | i18nPhrase"
-                (click)="toggleSidenav()"
-              >
-                <mat-icon>menu</mat-icon>
-              </button>
-            </div>
-            <div class="app-title">{{ configuration?.applicationName }}</div>
-            <ng-container *ngIf="configuration?.selectedTheme as selectedTheme">
-              <ng-container *ngIf="nextTheme$ | async as nextTheme">
-                <div class="theme-switch-container">
-                  <app-theme-switch
-                    [nextTheme]="nextTheme"
-                    [currentTheme]="selectedTheme"
-                    (switchTheme)="themeChanged($event)"
-                  ></app-theme-switch>
-                </div>
-              </ng-container>
+<ng-container *ngIf="deviceEnvironment$ | async as environment">
+  <ng-container *ngIf="configuration$ | async as configuration">
+    <ng-container *ngIf="sidenavStatus$ | async as sidenavStatus">
+      <mat-toolbar
+        color="primary"
+        [ngClass]="{
+          'sticky-toolbar': environment?.screen?.activeScreenSize === 'WEB'
+        }"
+        ><mat-toolbar-row>
+          <div class="main-menu-command-container">
+            <button
+              mat-icon-button
+              [matTooltip]="'application-shell-1' | i18nPhrase"
+              (click)="toggleSidenav(sidenavStatus)"
+            >
+              <mat-icon>menu</mat-icon>
+            </button>
+          </div>
+          <div class="app-title">{{ configuration?.applicationName }}</div>
+          <ng-container *ngIf="configuration?.selectedTheme as selectedTheme">
+            <ng-container *ngIf="nextTheme$ | async as nextTheme">
+              <div class="theme-switch-container">
+                <app-theme-switch
+                  [nextTheme]="nextTheme"
+                  [currentTheme]="selectedTheme"
+                  (switchTheme)="themeChanged($event)"
+                ></app-theme-switch>
+              </div>
             </ng-container>
+          </ng-container>
 
-            <div class="locale-switch-container">
-              <app-localization-selector
-                [activeLocalization]="activeLocalization$ | async"
-                [availableLocalizations]="availableLocalizations$ | async"
-                [displayWith]="'SIGNATURE'"
-                (localizationChanged)="localizationChanged($event)"
-              ></app-localization-selector>
-            </div> </mat-toolbar-row
-        ></mat-toolbar>
-        <div class="content-container">
-          <router-outlet class="hide-element"></router-outlet>
-        </div>
-      </ng-container>
+          <div class="locale-switch-container">
+            <app-localization-selector
+              [activeLocalization]="activeLocalization$ | async"
+              [availableLocalizations]="availableLocalizations$ | async"
+              [displayWith]="'SIGNATURE'"
+              (localizationChanged)="localizationChanged($event)"
+            ></app-localization-selector>
+          </div>
+          <div class="main-menu-command-container">
+            <button
+              mat-icon-button
+              [matTooltip]="'application-shell-2' | i18nPhrase"
+              (click)="logoutClicked()"
+            >
+              <mat-icon>logout</mat-icon>
+            </button>
+          </div></mat-toolbar-row
+        ></mat-toolbar
+      >
+      <mat-sidenav-container hasBackdrop="true" class="mat-theme">
+        <mat-sidenav
+          class="sidenav"
+          position="start"
+          mode="over"
+          fixedInViewport="true"
+          fixedTopGap="0"
+          [opened]="sidenavStatus && sidenavStatus === 'OPENED' ? true : false"
+          (keydown.escape)="toggleSidenav(sidenavStatus)"
+        >
+          <mat-toolbar color="primary">
+            <mat-toolbar-row></mat-toolbar-row>
+          </mat-toolbar>
+          <app-routable-item
+            *ngFor="let sideMenuItem of sideMenuItems$ | async"
+            [container]="sideMenuItem"
+          >
+          </app-routable-item>
+        </mat-sidenav>
+        <mat-sidenav-content class="sidenav-container">
+          <div class="content-container">
+            <router-outlet class="hide-element"></router-outlet>
+          </div>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
     </ng-container>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </ng-container>
+</ng-container>

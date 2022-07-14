@@ -40,6 +40,10 @@
   width: 64px;
 }
 
+.sidenav {
+  width: 90%;
+}
+
 .sidenav-container {
   width: 100vw;
 }
@@ -78,6 +82,10 @@
     height: calc(100vh - 64px);
     min-width: 100%;
   }
+
+  .sidenav {
+    width: 70%;
+  }
 }
 
 /**
@@ -88,5 +96,9 @@
     margin-block-start: 64px;
     height: calc(100vh - 64px);
     min-width: 100%;
+  }
+
+  .sidenav {
+    width: 35%;
   }
 }

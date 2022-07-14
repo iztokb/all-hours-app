@@ -1,0 +1,40 @@
+<ng-container *ngIf="container as providedContainer">
+  <ng-container *ngIf="mode === 'SIDE_NAV'">
+    <div class="card mat-typography">
+      <a class="navigable-item" [routerLink]="container?.path">
+        <div class="module-icon-container">
+          <mat-icon
+            color="primary"
+            class="module-icon-large"
+            routerLinkActive="active-route"
+            >{{ container?.icon }}</mat-icon
+          >
+        </div>
+        <div class="module-content-container">
+          <div class="title-container">
+            <h3 class="foreground-text">
+              {{ providedContainer?.name }}
+            </h3>
+          </div>
+          <div class="subtitle-container">
+            <h5 class="foreground-text">
+              {{ providedContainer?.description }}
+            </h5>
+          </div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="mode === 'SIDE_MENU'">
+    <a
+      class="navigable-item-side-menu"
+      [routerLink]="container?.path"
+      [matTooltip]="providedContainer?.name ? providedContainer.name : ''"
+      routerLinkActive="active-route"
+    >
+      <mat-icon color="primary" class="side-menu-item-icon">{{
+        container?.icon
+      }}</mat-icon>
+    </a>
+  </ng-container>
+</ng-container>

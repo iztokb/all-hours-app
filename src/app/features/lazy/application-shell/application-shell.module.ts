@@ -11,6 +11,7 @@ import { ApplicationShellComponent } from './containers';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { ModuleInitService } from './services';
+import { RoutableItemComponent } from './component';
 
 const MODULE_ROUTES: Routes = [
   {
@@ -39,7 +40,7 @@ const MODULE_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [ApplicationShellComponent],
+  declarations: [ApplicationShellComponent, RoutableItemComponent],
   imports: [
     CommonModule,
     LocalizationModule,

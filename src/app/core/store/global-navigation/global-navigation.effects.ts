@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, concatMap, exhaustMap, switchMap } from 'rxjs/operators';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 import * as globalNavigationActions from './global-navigation.actions';
 import { HttpService } from '../../services';
-import { IRoutableModule } from '../../models';
+import { IRoutableModule, ISideMenuEntity } from '../../models';
 
 @Injectable()
 export class GlobalNavigationEffects {
@@ -17,7 +17,7 @@ export class GlobalNavigationEffects {
       exhaustMap((req) => {
         return this._httpService
           .get<IRoutableModule[]>(
-            `assets/data/side-menu-${req.moduleSignature}-${req.localization}.json`,
+            `assets/data/side-menu-${req.moduleSignature}-${req.localization?.signature}.json`,
             true,
             null,
             null,
@@ -42,6 +42,34 @@ export class GlobalNavigationEffects {
               ];
             })
           );
+      })
+    )
+  );
+
+  setSideMenuItems$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(globalNavigationActions.LoadSideMenuItemsSuccessAction),
+      exhaustMap((req) => {
+        return of(req).pipe(
+          switchMap((res) => {
+            // Transform payload from IRoutableModule shape to ISideMenuEntity shape
+            const transformedData: ISideMenuEntity[] = res.items.map((item) => {
+              const transformedItem: ISideMenuEntity = {
+                ...item,
+                module: 'users-administration',
+              };
+
+              return transformedItem;
+            });
+
+            return [
+              globalNavigationActions.SetModuleSideMenuEntitiesAction({
+                entities: transformedData,
+                mode: 'REPLACE',
+              }),
+            ];
+          })
+        );
       })
     )
   );

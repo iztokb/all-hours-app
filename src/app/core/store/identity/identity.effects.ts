@@ -16,26 +16,30 @@ export class IdentityEffects {
     private _identityService: IdentityService
   ) {}
 
-  logoutAuthenticatedIdentity$ = createEffect(
-    () =>
-      this._actions$.pipe(
-        ofType(identityActions.LogoutAuthenticatedIdentityAction),
-        tap((req) => {
-          // Remove token from storage
-          this._storageService.deleteItemFromStorage(
-            'LOCAL_STORAGE',
-            'AUTH_TOKEN'
-          );
-
-          // Navigate to the home page
-          RouterGoAction({
-            path: ['/'],
-            extras: null,
-            query: null,
-          });
-        })
-      ),
-    { dispatch: false }
+  logoutAuthenticatedIdentity$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(identityActions.LogoutAuthenticatedIdentityAction),
+      exhaustMap((req) => {
+        return of(req).pipe(
+          tap((s) => {
+            // Remove token from storage
+            this._storageService.deleteItemFromStorage(
+              'LOCAL_STORAGE',
+              'AUTH_TOKEN'
+            );
+          }),
+          switchMap((res) => {
+            return [
+              RouterGoAction({
+                path: ['../authentication'],
+                extras: null,
+                query: { logout: true },
+              }),
+            ];
+          })
+        );
+      })
+    )
   );
 
   resolveAuthenticatedIdentity$ = createEffect(() =>

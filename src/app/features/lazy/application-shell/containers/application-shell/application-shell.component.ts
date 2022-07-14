@@ -8,6 +8,10 @@ import {
   SettingsService,
   I18nService,
   EnvironmentService,
+  SidenavStatus,
+  GlobalNavigationService,
+  IdentityService,
+  IRoutableModule,
 } from 'src/app/core';
 import { ModuleInitService } from '../../services';
 
@@ -47,9 +51,23 @@ export class ApplicationShellComponent implements OnInit {
    */
   nextTheme$!: Observable<ITheme | null>;
 
+  /**
+   * @description
+   * Side menu items
+   */
+  sideMenuItems$!: Observable<IRoutableModule[]>;
+
+  /**
+   * @description
+   * Sidenav status
+   */
+  sidenavStatus$!: Observable<SidenavStatus>;
+
   constructor(
     private _enironmentService: EnvironmentService,
+    private _globalNavigationService: GlobalNavigationService,
     private _i18nService: I18nService,
+    private _identityService: IdentityService,
     private _settingsService: SettingsService,
     private _moduleInitService: ModuleInitService
   ) {}
@@ -62,15 +80,24 @@ export class ApplicationShellComponent implements OnInit {
     this.deviceEnvironment$ = this._enironmentService.deviceEnvironment$;
 
     this.nextTheme$ = this._settingsService.nextTheme$;
+    this.sideMenuItems$ = this._globalNavigationService.sideMenuItems$;
+    this.sidenavStatus$ =
+      this._globalNavigationService.applicationSidenavStatus$;
   }
 
   localizationChanged(locale: ILocalization): void {
     this._i18nService.setLocalization(locale);
   }
 
+  logoutClicked(): void {
+    this._identityService.logout();
+  }
+
   themeChanged(theme: ITheme): void {
     this._settingsService.changeTheme(theme);
   }
 
-  toggleSidenav() {}
+  toggleSidenav(currentStatus: SidenavStatus) {
+    this._globalNavigationService.toggleSidenavStatus(currentStatus);
+  }
 }

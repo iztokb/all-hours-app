@@ -4,6 +4,7 @@ import { Observable, skipWhile, switchMap } from 'rxjs';
 import {
   getAuthenticatedIdentity$,
   getResolvingAuthenticatedIdentityInProgress$,
+  LogoutAuthenticatedIdentityAction,
   RouterGoAction,
   SetAuthenticatedIdentityAction,
   StoreAuthTokenAction,
@@ -27,6 +28,10 @@ export class IdentityService {
    * Authenticated identity facade
    */
   resolveAuthenticatedIdentity$!: Observable<IAuthenticatedIdentity | null>;
+
+  logout(): void {
+    this._store.dispatch(LogoutAuthenticatedIdentityAction());
+  }
 
   constructor(
     private _store: Store<IApplicationState>,

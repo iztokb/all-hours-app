@@ -21,6 +21,13 @@ export interface ISidenavState {
 export type SetSideMenuEntitiesMode = 'APPEND' | 'REPLACE';
 
 /**
+ * @type RoutableItemType
+ * @description
+ * Routable component mode signature
+ */
+export type RoutableItemType = 'SIDE_MENU' | 'SIDE_NAV';
+
+/**
  * @interface IRoutableModule
  * @description
  * Interface representing common routable module item as used in apps

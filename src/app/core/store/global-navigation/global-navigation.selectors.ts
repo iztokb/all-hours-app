@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IGlobalNavigationState } from '../../models';
+import { IGlobalNavigationState, ISideMenuEntity } from '../../models';
 
 const getGlobalNavigationFeatureSlice$ =
   createFeatureSelector<IGlobalNavigationState>('global_navigation');
@@ -31,7 +31,9 @@ const getApplicationSideMenuSearch$ = createSelector(
 const getApplicationSideMenuList$ = createSelector(
   getApplicationSideMenuEntities$,
   (entities) => {
-    return Object.keys(entities).map((key) => entities[key]);
+    return Object.keys(entities).map(
+      (key) => entities[key]
+    ) as unknown as ISideMenuEntity[];
   }
 );
 

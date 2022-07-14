@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { filter, Subscription } from 'rxjs';
 import {
   BaseService,
+  GlobalNavigationService,
   I18nService,
   IInitModule,
   ILoadLocalizationDispatched,
@@ -15,7 +16,10 @@ export class ModuleInitService
   implements IInitModule<void>
 {
   loadLocalizationDispatched!: ILoadLocalizationDispatched;
-  constructor(private _I18nService: I18nService) {
+  constructor(
+    private _I18nService: I18nService,
+    private _globalNavigationService: GlobalNavigationService
+  ) {
     super();
   }
 
@@ -44,6 +48,12 @@ export class ModuleInitService
             dispatched: true,
             localization: activeLocale.signature,
           };
+
+          // Get global navigation items
+          this._globalNavigationService.loadSideMenuItemsForModule(
+            activeLocale,
+            'application-shell'
+          );
         });
   }
 

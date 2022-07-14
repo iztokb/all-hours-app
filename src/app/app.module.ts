@@ -50,7 +50,7 @@ import { registerLocaleData } from '@angular/common';
     AllHoursCoreModule.forRoot(),
     BrowserAnimationsModule,
     BrowserModule,
-    RouterModule.forRoot(APPLICATION_ROUTES),
+    RouterModule.forRoot(APPLICATION_ROUTES, { enableTracing: true }),
   ],
   providers: [LocaleProvider, MatLocaleProvider],
   bootstrap: [AppComponent],

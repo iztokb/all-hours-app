@@ -5,6 +5,7 @@ import {
   getApplicationSidenavStatus$,
   getApplicationSideMenuItems$,
   LoadSideMenuItemsAction,
+  ToggleSideNavAction,
 } from '../store';
 import {
   IApplicationState,
@@ -29,12 +30,16 @@ export class GlobalNavigationService {
    */
   applicationSidenavStatus$!: Observable<SidenavStatus>;
 
+  /**
+   * @description
+   * Side menu items
+   */
   sideMenuItems$!: Observable<IRoutableModule[]>;
 
   /**
    * @description
    * Load side menu items for module
-   * @param {ILocalization } localization
+   * @param { ILocalization } localization
    * @param { string} moduleSignature
    */
   loadSideMenuItemsForModule(
@@ -49,13 +54,25 @@ export class GlobalNavigationService {
     );
   }
 
+  /**
+   * @description
+   * Toggle sidenav status
+   * @param { SidenavStatus } currentStatus
+   */
+  toggleSidenavStatus(currentStatus: SidenavStatus): void {
+    const newStatus: SidenavStatus =
+      currentStatus === 'OPENED' ? 'CLOSED' : 'OPENED';
+
+    this._store.dispatch(ToggleSideNavAction({ newStatus: newStatus }));
+  }
+
   constructor(private _store: Store<IApplicationState>) {
     this.applicationSidenavStatus$ = this._store.pipe(
       select(getApplicationSidenavStatus$)
     );
 
-    /* this.sideMenuItems$ = this._store.pipe(
+    this.sideMenuItems$ = this._store.pipe(
       select(getApplicationSideMenuItems$)
-    ); */
+    );
   }
 }
