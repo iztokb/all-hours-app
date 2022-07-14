@@ -5,7 +5,7 @@
     "id": 1,
     "name": "Seznam uporabnikov",
     "params": null,
-    "path": ["app", "users"],
+    "path": ["./", "users"],
     "sortingOrder": 1,
     "subItems": null,
     "url": "users"
@@ -16,7 +16,7 @@
     "id": 2,
     "name": "Seznam odsotnosti",
     "params": null,
-    "path": ["app", "absences"],
+    "path": ["./", "absences"],
     "sortingOrder": 2,
     "subItems": null,
     "url": "absences"
@@ -27,7 +27,7 @@
     "id": 3,
     "name": "Nastavitve",
     "params": null,
-    "path": ["app", "settings"],
+    "path": ["./", "settings"],
     "sortingOrder": 3,
     "subItems": null,
     "url": "settings"

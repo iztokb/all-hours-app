@@ -6,7 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LocalizationModule } from 'src/app/features/shared/localization';
 import { ThemeSwitchModule } from 'src/app/features/shared/theme-switch';
-import { AuthenticationGuard } from 'src/app/core';
+import { AuthenticationGuard, BrowserGuard } from 'src/app/core';
 import { ApplicationShellComponent } from './containers';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,24 +18,35 @@ const MODULE_ROUTES: Routes = [
     component: ApplicationShellComponent,
     canActivate: [AuthenticationGuard],
     path: '',
-    /* children: [
+    children: [
       {
         canActivate: [BrowserGuard],
         loadChildren: () =>
-          import('src/app/features/lazy/authentication').then(
-            (m) => m.AuthenticationModule
-          ),
-        path: 'app',
+          import('src/app/features/lazy/users').then((m) => m.UsersModule),
+        path: 'users',
       },
       {
         canActivate: [BrowserGuard],
         loadChildren: () =>
-          import('src/app/features/lazy/not-found').then(
-            (m) => m.NotFoundModule
+          import('src/app/features/lazy/absences').then(
+            (m) => m.AbsencesModule
           ),
-        path: 'url-not-found',
+        path: 'absences',
       },
-    ], */
+      {
+        canActivate: [BrowserGuard],
+        loadChildren: () =>
+          import('src/app/features/lazy/settings').then(
+            (m) => m.SettingsModule
+          ),
+        path: 'settings',
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'users',
+      },
+    ],
   },
 ];
 
