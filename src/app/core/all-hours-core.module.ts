@@ -28,6 +28,7 @@ import {
   ApplicationConfigurationGuard,
   AuthenticationGuard,
   BrowserGuard,
+  IsAlreadyAuthenticatedGuard,
 } from './guards';
 import { CoreEffects, CoreReducers, MetaReducers } from './store';
 import { CustomRouterSerializer } from './utils';
@@ -80,6 +81,7 @@ export class AllHoursCoreModule {
         HttpService,
         I18nService,
         IdentityService,
+        IsAlreadyAuthenticatedGuard,
         SettingsService,
         StorageService,
         StringComparisonService,

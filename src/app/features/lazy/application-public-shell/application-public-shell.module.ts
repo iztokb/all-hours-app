@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LocalizationModule } from 'src/app/features/shared/localization';
 import { ThemeSwitchModule } from 'src/app/features/shared/theme-switch';
 import { PublicShellComponent } from './containers';
-import { BrowserGuard } from 'src/app/core';
+import { BrowserGuard, IsAlreadyAuthenticatedGuard } from 'src/app/core';
 
 const MODULE_ROUTES: Routes = [
   {
@@ -15,7 +15,7 @@ const MODULE_ROUTES: Routes = [
     path: '',
     children: [
       {
-        canActivate: [BrowserGuard],
+        canActivate: [BrowserGuard, IsAlreadyAuthenticatedGuard],
         loadChildren: () =>
           import('src/app/features/lazy/authentication').then(
             (m) => m.AuthenticationModule
