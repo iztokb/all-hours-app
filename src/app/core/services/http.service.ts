@@ -9,7 +9,10 @@ import {
   IHttpHeader,
 } from '../models';
 import { filter, map, Observable } from 'rxjs';
-import { getApplicationConfiguration$ } from '../store';
+import {
+  getApplicationConfiguration$,
+  getAuthenticatedIdentity$,
+} from '../store';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +20,7 @@ import { getApplicationConfiguration$ } from '../store';
 export class HttpService extends BaseService {
   private _baseUrl!: string;
   private _applicationVersion!: string;
+  private _bearerToken!: string | null;
 
   constructor(
     private _httpClient: HttpClient,
@@ -36,13 +40,21 @@ export class HttpService extends BaseService {
         const isProduction = envPropsStream.production;
 
         // Set base url
-        this._baseUrl = `api`;
+        this._baseUrl = `https://api4.allhours.com/api/`;
 
         // Set application version
         this._applicationVersion = envPropsStream.applicationVersion;
       });
 
     this.subscriptions.push(envSubscription);
+
+    const identitySubscription = this._store
+      .pipe(select(getAuthenticatedIdentity$))
+      .subscribe((identity) => {
+        const token = identity?.token ? identity.token : null;
+
+        this._bearerToken = token;
+      });
   }
 
   delete<T>(
@@ -160,7 +172,7 @@ export class HttpService extends BaseService {
     includeAuth: boolean
   ): HttpHeaders {
     // Append headers to common headers
-    const commonHeaders = this._baseHeaders();
+    const commonHeaders = this._baseHeaders(includeAuth);
 
     headerOptions = !headerOptions ? 'APPEND' : headerOptions;
 
@@ -188,7 +200,7 @@ export class HttpService extends BaseService {
         console.info(
           `No HTTP headers were provided although OVERIDE option was selected. Common header were used as a result.`
         );
-        return this._baseHeaders();
+        return this._baseHeaders(includeAuth);
       }
 
       // Http headers object
@@ -199,7 +211,7 @@ export class HttpService extends BaseService {
         console.info(
           `No HTTP headers were provided although OVERIDE option was selected. Common header were used as a result.`
         );
-        return this._baseHeaders();
+        return this._baseHeaders(includeAuth);
       }
 
       requestSpecificHeaders.forEach((header) => {
@@ -211,17 +223,25 @@ export class HttpService extends BaseService {
   }
 
   /**
-   * @private @method _baseHeaders
-   * @author iztokb
-   * @since 2020-11-11
    * @description
    * Method responsible for returning default (common) http headers
    * @returns {HttpHeaders}
    */
-  private _baseHeaders(): HttpHeaders {
-    return new HttpHeaders({
+  private _baseHeaders(includeAuth: boolean): HttpHeaders {
+    const commonHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'X-Application-Version': this._applicationVersion,
     });
+
+    if (includeAuth && this._bearerToken) {
+      const headersWithAuthorization = commonHeaders.append(
+        'Authorization',
+        `Bearer ${this._bearerToken}`
+      );
+
+      return headersWithAuthorization;
+    }
+
+    return commonHeaders;
   }
 }
