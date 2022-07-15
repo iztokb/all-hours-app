@@ -1,0 +1,83 @@
+<mat-toolbar color="primary" [ngClass]="{ 'sticky-toolbar': stickyHeader }">
+  <mat-toolbar-row class="toolbar-row">
+    <div class="toolbar-icon-container">
+      <div class="toolbar-icon">
+        <mat-icon [matTooltip]="iconTooltip">{{ icon }}</mat-icon>
+      </div>
+    </div>
+    <div
+      class="dialog-title-container"
+      [ngClass]="{
+        'width-with-one-command': !enableMinimize && !enableDrag,
+        'width-with-two-commands':
+          (enableMinimize && !enableDrag) || (!enableMinimize && enableDrag),
+        'width-with-three-commands': enableMinimize && enableDrag
+      }"
+    >
+      <ng-container *ngIf="recordId && recordId.length > 0">
+        <div class="record-identifier-container">
+          {{ recordId }}
+        </div>
+      </ng-container>
+      <div
+        [ngClass]="{
+          'dialog-title-without-record-identifier': recordId?.length === 0,
+          'dialog-title-with-record-identifier': recordId && recordId.length > 0
+        }"
+        class="hide-on-small-devices"
+      >
+        <p class="dialog-title-text no-text-overflow">
+          {{ title }}
+        </p>
+      </div>
+    </div>
+    <ng-container *ngIf="enableDrag">
+      <div
+        class="toolbar-icon-container"
+        cdkDrag
+        cdkDragRootElement=".cdk-overlay-pane"
+        cdkDragHandle
+      >
+        <div class="toolbar-icon">
+          <mat-icon
+            class="drag-handle"
+            [matTooltip]="
+              enableDragTooltip && enableDragTooltip.length > 0
+                ? enableDragTooltip
+                : ('shared-3' | i18nPhrase)
+            "
+            >open_with</mat-icon
+          >
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="enableMinimize">
+      <div class="toolbar-icon-container">
+        <div class="toolbar-icon">
+          <button
+            mat-button
+            [matTooltip]="
+              enableMinimizeTooltip && enableMinimizeTooltip.length > 0
+                ? enableMinimizeTooltip
+                : ('shared-4' | i18nPhrase)
+            "
+            (click)="minimizeClicked()"
+          >
+            <mat-icon>minimize</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <div class="toolbar-icon-container">
+      <div class="toolbar-icon">
+        <button
+          mat-button
+          [matTooltip]="'shared-5' | i18nPhrase"
+          (click)="closeClicked()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

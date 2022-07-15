@@ -1,0 +1,149 @@
+:host {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+}
+
+.dialog-title-container {
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-items: center;
+}
+
+.drag-handle {
+  cursor: pointer;
+}
+
+.dialog-title-with-record-identifier {
+  align-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  max-width: calc(100% - 128px);
+  width: calc(100% - 128px);
+}
+
+.dialog-title-without-record-identifier {
+  align-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  max-width: 100%;
+  width: 100%;
+}
+
+.dialog-title-text {
+  margin: 0;
+  width: 100%;
+}
+
+.hide-on-small-devices {
+  display: none;
+}
+
+.no-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.record-identifier-container {
+  align-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 128px;
+  justify-content: center;
+  justify-items: center;
+  width: 128px;
+}
+
+.sticky-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.toolbar-icon {
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  justify-content: center;
+  justify-items: center;
+  max-width: 100%;
+}
+
+.toolbar-icon-container {
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 64px;
+  justify-content: center;
+  justify-items: center;
+  max-width: 64px;
+}
+
+.toolbar-row {
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-items: center;
+  max-width: 100%;
+}
+
+.width-with-one-command {
+  max-width: calc(100% - 64px);
+  width: calc(100% - 64px);
+}
+
+.width-with-three-commands {
+  max-width: calc(100% - 256px);
+  width: calc(100% - 256px);
+}
+
+.width-with-two-commands {
+  max-width: calc(100% - 128px);
+  width: calc(100% - 128px);
+}
+
+/**
+ * SM DEVICES
+ */
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  .hide-on-small-devices {
+    display: flex;
+  }
+}
+
+/**
+ * LG DEVICES
+ */
+@media screen and (min-width: 959px) {
+  .hide-on-small-devices {
+    display: flex;
+  }
+}
