@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "module": "shared",
+    "phrase": "Počisti vnešeni tekst"
+  },
+  {
+    "id": 2,
+    "module": "shared",
+    "phrase": "Išči"
+  }
+]

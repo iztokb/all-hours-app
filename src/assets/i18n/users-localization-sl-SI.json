@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "module": "users",
+    "phrase": "Uporabniki"
+  },
+  {
+    "id": 26,
+    "module": "users-administration",
+    "phrase": "Število zapisov"
+  }
+]

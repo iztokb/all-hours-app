@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "module": "shared",
+    "phrase": "Clear entered text"
+  },
+  {
+    "id": 2,
+    "module": "shared",
+    "phrase": "Search"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "module": "users",
+    "phrase": "Users"
+  },
+  {
+    "id": 2,
+    "module": "users-administration",
+    "phrase": "Record count"
+  }
+]
