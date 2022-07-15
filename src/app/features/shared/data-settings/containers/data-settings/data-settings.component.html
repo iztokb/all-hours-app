@@ -1,0 +1,23 @@
+<div class="title-container">
+  <div class="list-title-container">
+    <p class="title">{{ listTitle }}</p>
+  </div>
+  <div class="list-subtitle-container">
+    <p class="subtitle">
+      {{ listSubtitle }}
+      <ng-container *ngIf="recordCount">{{ recordCount }}</ng-container>
+    </p>
+  </div>
+</div>
+<div class="search-filter-container">
+  <div class="search-container">
+    <app-search
+      [placeholder]="'shared-15' | i18nPhrase"
+      [providedSearchValue]="null"
+      (searchValue)="searchChanged($event)"
+    ></app-search>
+  </div>
+  <div class="filter-container"></div>
+</div>
+
+<div class="sorting-container"></div>

@@ -1,0 +1,31 @@
+<form [formGroup]="form" class="form-container">
+  <div class="search-container">
+    <mat-form-field class="search-form-control">
+      <input
+        matInput
+        type="search"
+        [placeholder]="placeholder"
+        formControlName="search"
+      />
+
+      <button
+        *ngIf="form.get('search')?.value?.length > 0"
+        matSuffix
+        mat-icon-button
+        [matTooltip]="'shared-1' | i18nPhrase"
+        (click)="clearSearchClicked()"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button
+        matSuffix
+        mat-icon-button
+        [matTooltip]="'shared-2' | i18nPhrase"
+        (click)="searchClicked(form.get('search')?.value)"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+      <mat-hint>{{ hint }}</mat-hint>
+    </mat-form-field>
+  </div>
+</form>
