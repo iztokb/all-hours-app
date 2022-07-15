@@ -8,5 +8,20 @@
     "id": 2,
     "module": "shared",
     "phrase": "Search"
+  },
+  {
+    "id": 3,
+    "module": "shared",
+    "phrase": "Drag window"
+  },
+  {
+    "id": 4,
+    "module": "shared",
+    "phrase": "Minimize window"
+  },
+  {
+    "id": 5,
+    "module": "shared",
+    "phrase": "Close window"
   }
 ]

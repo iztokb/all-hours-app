@@ -8,5 +8,20 @@
     "id": 2,
     "module": "shared",
     "phrase": "Išči"
+  },
+  {
+    "id": 3,
+    "module": "shared",
+    "phrase": "Premakni okno"
+  },
+  {
+    "id": 4,
+    "module": "shared",
+    "phrase": "Minimiraj okno"
+  },
+  {
+    "id": 5,
+    "module": "shared",
+    "phrase": "Zapri okno"
   }
 ]
