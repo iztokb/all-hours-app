@@ -34,7 +34,7 @@ export class DialogTitleComponent implements OnInit {
    */
   /**
    * @description
-   * Close dialog command tooltip
+   * Close dialog command tooltip.
    */
   @Input() closeDialogTooltip: string = '';
 

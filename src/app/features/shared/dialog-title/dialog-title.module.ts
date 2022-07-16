@@ -10,6 +10,7 @@ import { DialogTitleComponent } from './containers';
 
 @NgModule({
   declarations: [DialogTitleComponent],
+  exports: [DialogTitleComponent],
   imports: [
     CommonModule,
     DragDropModule,
