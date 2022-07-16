@@ -4,6 +4,7 @@
   $accent: map-get($theme, accent);
   $warning: map-get($theme, warning);
   $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
 
   // Colors
   $primary-color: map-get($primary, 500);
@@ -11,13 +12,29 @@
   $primary-color-100: map-get($primary, $key: 100);
   $primary-color-200: map-get($primary, $key: 200);
   $primary-contrast: map-get($primary, 500-contrast);
+  $primary-contrast-color: map-get($primary, 500-contrast);
   $foreground-color: map-get(
     $map: $foreground,
     $key: text,
   );
+  $background-color: map-get($background, background);
 
   .active-route {
     background-color: $primary-color-200;
+  }
+
+  .border-gradient {
+    border-top: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(
+      to right,
+      $primary-color,
+      $background-color
+    );
+  }
+
+  .contrast-text-color {
+    color: $primary-contrast-color;
   }
 
   .foreground-text {
@@ -56,8 +73,28 @@
     background-color: $primary-color-50;
   }
 
+  .photo-border {
+    border-radius: 50%;
+    background-color: $background-color;
+    box-shadow: 1px 1px 8px 2px $primary-color-100;
+  }
+
+  .primary-background {
+    background-color: $primary-color;
+  }
+
+  .record-identifier-text {
+    color: $primary-color;
+    font-size: smaller;
+    margin: 0;
+  }
+
   .round-border-without-shadow {
     border-radius: 50%;
     border: 2px solid $primary-color;
+  }
+
+  .top-line {
+    border-top: 1px solid $primary-color;
   }
 }
