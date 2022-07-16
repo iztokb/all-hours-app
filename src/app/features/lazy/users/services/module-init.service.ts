@@ -8,7 +8,7 @@ import {
   IInitModule,
   ILoadLocalizationDispatched,
 } from 'src/app/core';
-import { LoadUsersAction } from '../store';
+import { LoadUsersAction, ResetUsersStoreSliceAction } from '../store';
 
 @Injectable({
   providedIn: 'root',
@@ -53,5 +53,7 @@ export class ModuleInitService
 
   teardownModule(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+
+    this._store.dispatch(ResetUsersStoreSliceAction());
   }
 }

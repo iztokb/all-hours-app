@@ -43,6 +43,10 @@ export interface IUsersState extends EntityState<IUser> {
   activeSearch: string;
   loaded: boolean;
   loading: boolean;
+  posted: boolean;
+  posting: boolean;
+  updated: boolean;
+  updating: boolean;
 }
 
 export interface IUsersModulestate {

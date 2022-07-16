@@ -1,0 +1,13 @@
+:host {
+  -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1.5s; /* Firefox < 16 */
+  -o-animation: fadein 1.5s; /* Opera < 12.1 */
+  animation: fadein 1.5s;
+  display: flex;
+  flex-direction: column;
+  margin: -24px;
+}
+
+.content-container {
+  padding: 16px;
+}

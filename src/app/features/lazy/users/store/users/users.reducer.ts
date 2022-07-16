@@ -12,6 +12,10 @@ export const USERS_INITIAL_STATE: IUsersState = usersAdapter.getInitialState({
   activeSearch: '',
   loaded: false,
   loading: false,
+  posted: false,
+  posting: false,
+  updated: false,
+  updating: false,
 });
 
 export const UsersReducer = createReducer(
@@ -36,6 +40,9 @@ export const UsersReducer = createReducer(
       loaded: true,
       loading: false,
     });
+  }),
+  on(usersActions.ResetUsersStoreSliceAction, (state, payload) => {
+    return USERS_INITIAL_STATE;
   }),
   on(usersActions.UsersSearchChangedAction, (state, payload) => {
     return {

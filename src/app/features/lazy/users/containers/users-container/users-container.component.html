@@ -1,32 +1,41 @@
 <ng-container *ngIf="activeLocalization$ | async as activeLocalization">
-  <div class="mat-toolbar mat-toolbar-single-row mat-typography">
-    <div class="title-container">
-      <h3 class="title">
-        {{ "users-1" | i18nPhrase }}
-      </h3>
+  <ng-container *ngIf="deviceEnvironment$ | async as device">
+    <div class="mat-toolbar mat-toolbar-single-row mat-typography">
+      <div class="title-container">
+        <h3 class="title">
+          {{ "users-1" | i18nPhrase }}
+        </h3>
+      </div>
     </div>
-  </div>
-  <ng-container *ngIf="sidenavStatus$ | async as sidenavStatus">
-    <main
-      [ngClass]="{
-        'main-container': sidenavStatus === 'CLOSED',
-        'main-container-with-opened-sidenav': sidenavStatus === 'OPENED'
-      }"
-    >
-      <div class="data-setting-container">
-        <ng-container
-          *ngIf="
-            (deviceEnvironment$ | async)?.screen
-              ?.activeScreenSize as activeScreenSize
-          "
-          ><app-data-settings
+    <ng-container *ngIf="sidenavStatus$ | async as sidenavStatus">
+      <main
+        [ngClass]="{
+          'main-container': sidenavStatus === 'CLOSED',
+          'main-container-with-opened-sidenav': sidenavStatus === 'OPENED'
+        }"
+      >
+        <div class="data-setting-container">
+          <app-data-settings
             [listSubtitle]="'users-2' | i18nPhrase"
             [listTitle]="'users-1' | i18nPhrase"
+            [recordCount]="(usersList$ | async)?.length"
             [providedSearchValue]="null"
             (searchHasChanged)="searchChanged($event)"
-          ></app-data-settings
-        ></ng-container>
-      </div>
-    </main>
+          ></app-data-settings>
+        </div>
+        <cdk-virtual-scroll-viewport
+          appendOnly
+          itemSize="20"
+          class="list-container"
+        >
+          <app-users-list-item
+            *cdkVirtualFor="let user of usersList$ | async"
+            [user]="user"
+            (openUserDetail)="openUserDetail($event, device)"
+          >
+          </app-users-list-item>
+        </cdk-virtual-scroll-viewport>
+      </main>
+    </ng-container>
   </ng-container>
 </ng-container>

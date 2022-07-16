@@ -1,0 +1,52 @@
+<mat-card class="item-container fade-in">
+  <div class="identifier-container">
+    <div class="record-status-container"></div>
+    <div class="photo-container">
+      <img
+        class="photo-border photo"
+        [src]="
+          user?.PictureUri && user?.PictureUri !== ''
+            ? user?.PictureUri
+            : './assets/images/ghost-avatar.svg'
+        "
+      />
+    </div>
+    <div class="record-identifier-container">
+      <div class="record-identifier">
+        <p class="record-identifier-text"></p>
+      </div>
+    </div>
+  </div>
+  <div class="content-container">
+    <div class="top-content-container">
+      <div class="title-container">
+        <div class="title">
+          <p class="title-text">
+            {{ user?.FirstName }} {{ user?.LastName }}<br />
+            {{ user?.Email }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-content-container border-gradient">
+      <div class="subtitle-container">
+        <div class="subtitle">
+          <p class="subtitle-text">
+            {{ user?.Id }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions-content-container">
+    <button mat-icon-button [matMenuTriggerFor]="personalMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</mat-card>
+
+<mat-menu #personalMenu="matMenu">
+  <button mat-menu-item (click)="openUserDetailClicked(user)">
+    {{ "users-3" | i18nPhrase }}
+  </button>
+</mat-menu>

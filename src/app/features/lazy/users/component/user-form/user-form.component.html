@@ -1,0 +1,87 @@
+<ng-container *ngIf="record">
+  <form class="form-wrapper" [formGroup]="form" novalidate autocomplete="off">
+    <div class="form-group-container">
+      <div class="id-container">
+        <p class="id-label">
+          {{ "common-forms-1" | i18nPhrase }}: {{ record?.Id }}
+        </p>
+      </div>
+      <div class="field-container">
+        <mat-form-field [floatLabel]="'always'">
+          <mat-label>{{ "common-forms-2" | i18nPhrase }}</mat-label>
+          <input
+            matInput
+            [placeholder]="'common-forms-3' | i18nPhrase"
+            formControlName="firstName"
+            required
+            aria-required="true"
+          />
+          <mat-error *ngIf="form.get('firstName')?.errors as errors">
+            <span *ngIf="errors['required']">
+              {{ "common-forms-4" | i18nPhrase }}
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="field-container">
+        <mat-form-field [floatLabel]="'always'">
+          <mat-label>{{ "common-forms-5" | i18nPhrase }}</mat-label>
+          <input
+            matInput
+            [placeholder]="'common-forms-6' | i18nPhrase"
+            formControlName="lastName"
+            required
+            aria-required="true"
+          />
+          <mat-error *ngIf="form.get('lastName')?.errors as errors">
+            <span *ngIf="errors['required']">
+              {{ "common-forms-4" | i18nPhrase }}
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="field-container">
+        <mat-form-field [floatLabel]="'always'">
+          <mat-label>{{ "common-forms-7" | i18nPhrase }}</mat-label>
+          <input
+            matInput
+            [placeholder]="'common-forms-8' | i18nPhrase"
+            formControlName="email"
+            required
+            aria-required="true"
+          />
+          <mat-error *ngIf="form.get('email')?.errors as errors">
+            <span *ngIf="errors['required']">
+              {{ "common-forms-4" | i18nPhrase }}
+            </span>
+            <span *ngIf="errors['email']">
+              {{ "common-forms-11" | i18nPhrase }}
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group-container">
+        <div class="command-container">
+          <button
+            mat-button
+            type="button"
+            class="command"
+            (click)="cancelClicked()"
+          >
+            {{ "common-forms-9" | i18nPhrase }}
+          </button>
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            [disabled]="form?.invalid || submitInProgress"
+            class="command"
+            (click)="saveFormClicked(record)"
+          >
+            {{ "common-forms-10" | i18nPhrase }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

@@ -13,6 +13,10 @@ export const LoadUsersSuccessAction = createAction(
   props<{ users: IUser[] }>()
 );
 
+export const ResetUsersStoreSliceAction = createAction(
+  '[Users] Reset store slice to default state'
+);
+
 export const UsersSearchChangedAction = createAction(
   '[Users] Users search changed',
   props<{ search: string }>()

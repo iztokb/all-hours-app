@@ -54,7 +54,7 @@ const getUsersEntities$ = createSelector(
  * @description
  * Get users list
  */
-const getUsersList$ = createSelector(getUsersEntities$, (entities) => {
+const getUsersRawList$ = createSelector(getUsersEntities$, (entities) => {
   return Object.keys(entities).map((key) => entities[key]) as IUser[];
 });
 
@@ -62,8 +62,8 @@ const getUsersList$ = createSelector(getUsersEntities$, (entities) => {
  * @description
  * Get users list with applied filter by search term
  */
-const getRealtimeFilteredList$ = createSelector(
-  getUsersList$,
+const getUsersFilteredList$ = createSelector(
+  getUsersRawList$,
   getUsersActiveSearch$,
   (list, search) => {
     if (!list) {
@@ -107,3 +107,15 @@ const getRealtimeFilteredList$ = createSelector(
     return filteredList;
   }
 );
+
+/**
+ * @description
+ * Get users list
+ */
+export const getUsersList$ = createSelector(getUsersFilteredList$, (list) => {
+  if (!list) {
+    return [];
+  }
+
+  return list;
+});

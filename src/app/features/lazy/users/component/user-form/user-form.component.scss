@@ -1,0 +1,50 @@
+:host {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  justify-items: flex-start;
+  min-width: 100%;
+}
+
+.command {
+  display: flex;
+}
+
+.command-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 1em 1em 1em 1em;
+  width: 100%;
+}
+
+.id-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.id-label {
+  font-weight: 700;
+  text-transform: uppercase;
+}

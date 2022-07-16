@@ -1,13 +1,18 @@
-/**
- * XS DEVICES
- */
- :host {
+:host {
   display: grid;
   grid:
-    'title' 56px
-    'main' auto/
+    "title" 56px
+    "main" auto/
     1fr;
   min-height: calc(100vh - 56px);
+  min-width: 100%;
+}
+
+.list-container {
+  display: grid;
+  height: calc(100% - 96px);
+  grid-area: list;
+  grid-row: 2 / span 1;
   min-width: 100%;
 }
 
@@ -30,10 +35,25 @@
   :host {
     display: grid;
     grid:
-      'title' 64px
-      'main' auto/
+      "title" 64px
+      "main" auto/
       1fr;
     min-height: calc(100vh - 64px);
+    min-width: 100%;
+  }
+
+  .data-setting-container {
+    display: flex;
+    flex-direction: row;
+    height: 96px;
+    width: 100%;
+  }
+
+  .list-container {
+    display: grid;
+    height: calc(100% - 96px);
+    grid-area: list;
+    grid-row: 2 / span 1;
     min-width: 100%;
   }
 
@@ -50,21 +70,27 @@
   :host {
     display: grid;
     grid:
-      'title' 64px
-      'main' auto/
+      "title" 64px
+      "main" auto/
       1fr;
     min-height: calc(100vh - 64px);
     min-width: 100%;
   }
 
   .data-setting-container {
-    display:  flex;
+    display: flex;
     flex-direction: row;
     height: 96px;
     width: 100%;
   }
 
-
+  .list-container {
+    display: grid;
+    height: calc(100% - 96px);
+    grid-area: list;
+    grid-row: 2 / span 1;
+    min-width: 100%;
+  }
 
   .main-container {
     display: flex;
