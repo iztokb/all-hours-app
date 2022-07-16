@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { filter, Subscription, tap } from 'rxjs';
 import {
   IApplicationInitOptions,
   IApplicationState,
   IInitApplication,
 } from '../models';
 import {
+  geti18nActiveLocalization$,
+  LoadLocalizationAction,
   ResolveAuthenticatedIdentityAction,
   ResolveBrowserAction,
   ResolveDeviceAction,
@@ -63,6 +66,35 @@ export class ApplicationInitService
     );
 
     // Get core localization phrases when localization is resolved
+    const activeLocalizationSubscription: Subscription = this._store
+      .pipe(
+        select(geti18nActiveLocalization$),
+        filter((stream) => stream !== null),
+        tap((stream) => {
+          if (!stream?.signature) {
+            return;
+          }
+
+          this._store.dispatch(
+            LoadLocalizationAction({
+              localization: stream?.signature,
+              currentLocalization: stream?.signature,
+              moduleSignature: 'shared',
+            })
+          );
+
+          this._store.dispatch(
+            LoadLocalizationAction({
+              localization: stream?.signature,
+              currentLocalization: stream?.signature,
+              moduleSignature: 'common-forms',
+            })
+          );
+        })
+      )
+      .subscribe();
+
+    this.subscriptions.push(activeLocalizationSubscription);
 
     // Resolve current identity
     if (options?.identityConfiguration?.identityProvider) {
