@@ -6,7 +6,27 @@
   },
   {
     "id": 2,
-    "module": "users-administration",
+    "module": "users",
     "phrase": "Record count"
+  },
+  {
+    "id": 3,
+    "module": "users",
+    "phrase": "Edit"
+  },
+  {
+    "id": 4,
+    "module": "users",
+    "phrase": "Add new user"
+  },
+  {
+    "id": 5,
+    "module": "users",
+    "phrase": "Edit user"
+  },
+  {
+    "id": 6,
+    "module": "users",
+    "phrase": "User"
   }
 ]

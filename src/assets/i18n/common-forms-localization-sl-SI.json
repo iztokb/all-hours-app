@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "module": "common-forms",
+    "phrase": "Id"
+  },
+  {
+    "id": 2,
+    "module": "common-forms",
+    "phrase": "Ime"
+  },
+  {
+    "id": 3,
+    "module": "common-forms",
+    "phrase": "Vnesite ime"
+  },
+  {
+    "id": 4,
+    "module": "common-forms",
+    "phrase": "Polje je obvezno"
+  },
+  {
+    "id": 5,
+    "module": "common-forms",
+    "phrase": "Priimek"
+  },
+  {
+    "id": 6,
+    "module": "common-forms",
+    "phrase": "Vnesite priimek"
+  },
+  {
+    "id": 7,
+    "module": "common-forms",
+    "phrase": "Elektronski naslov"
+  },
+  {
+    "id": 8,
+    "module": "common-forms",
+    "phrase": "Vnesite elektronski naslov"
+  },
+  {
+    "id": 9,
+    "module": "common-forms",
+    "phrase": "Prekliči"
+  },
+  {
+    "id": 10,
+    "module": "common-forms",
+    "phrase": "Shrani"
+  },
+  {
+    "id": 11,
+    "module": "common-forms",
+    "phrase": "Elektronski naslov ni pravilen"
+  }
+]

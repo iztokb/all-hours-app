@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "module": "common-forms",
+    "phrase": "Id"
+  },
+  {
+    "id": 2,
+    "module": "common-forms",
+    "phrase": "First name"
+  },
+  {
+    "id": 3,
+    "module": "common-forms",
+    "phrase": "Enter your first name"
+  },
+  {
+    "id": 4,
+    "module": "common-forms",
+    "phrase": "Field is mandatory"
+  },
+  {
+    "id": 5,
+    "module": "common-forms",
+    "phrase": "Last name"
+  },
+  {
+    "id": 6,
+    "module": "common-forms",
+    "phrase": "Enter your last name"
+  },
+  {
+    "id": 7,
+    "module": "common-forms",
+    "phrase": "Email address"
+  },
+  {
+    "id": 8,
+    "module": "common-forms",
+    "phrase": "Enter your email address"
+  },
+  {
+    "id": 9,
+    "module": "common-forms",
+    "phrase": "Cancel"
+  },
+  {
+    "id": 10,
+    "module": "common-forms",
+    "phrase": "Save"
+  },
+  {
+    "id": 11,
+    "module": "common-forms",
+    "phrase": "Email address is not valid"
+  }
+]

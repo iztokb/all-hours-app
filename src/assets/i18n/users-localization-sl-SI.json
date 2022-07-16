@@ -5,8 +5,28 @@
     "phrase": "Uporabniki"
   },
   {
-    "id": 26,
-    "module": "users-administration",
+    "id": 2,
+    "module": "users",
     "phrase": "Število zapisov"
+  },
+  {
+    "id": 3,
+    "module": "users",
+    "phrase": "Uredi"
+  },
+  {
+    "id": 4,
+    "module": "users",
+    "phrase": "Dodajanje uporabnika"
+  },
+  {
+    "id": 5,
+    "module": "users",
+    "phrase": "Urejanje uporabnika"
+  },
+  {
+    "id": 6,
+    "module": "users",
+    "phrase": "Uporabnik"
   }
 ]
