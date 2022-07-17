@@ -8,7 +8,11 @@ import {
   IInitModule,
   ILoadLocalizationDispatched,
 } from 'src/app/core';
-import { LoadUsersAction, ResetUsersStoreSliceAction } from '../store';
+import {
+  LoadAbsenceDefinitionsAction,
+  LoadUsersAction,
+  ResetUsersStoreSliceAction,
+} from '../store';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +53,7 @@ export class ModuleInitService
       });
 
     this._store.dispatch(LoadUsersAction());
+    this._store.dispatch(LoadAbsenceDefinitionsAction());
   }
 
   teardownModule(): void {

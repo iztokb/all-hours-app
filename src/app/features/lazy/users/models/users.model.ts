@@ -1,4 +1,5 @@
 import { EntityState } from '@ngrx/entity';
+import { IAbsenceDefinition, IAbsenceDefinitionState } from './absences.model';
 
 /**
  * @interface IUser
@@ -86,5 +87,6 @@ export interface IUsersState extends EntityState<IUser> {
 }
 
 export interface IUsersModulestate {
+  absence_definitions: IAbsenceDefinitionState;
   users: IUsersState;
 }
