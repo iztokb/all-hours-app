@@ -28,5 +28,15 @@
     "id": 6,
     "module": "users",
     "phrase": "User"
+  },
+  {
+    "id": 7,
+    "module": "users",
+    "phrase": "Add new user"
+  },
+  {
+    "id": 8,
+    "module": "users",
+    "phrase": "Delete user"
   }
 ]

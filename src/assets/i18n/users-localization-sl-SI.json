@@ -28,5 +28,15 @@
     "id": 6,
     "module": "users",
     "phrase": "Uporabnik"
+  },
+  {
+    "id": 7,
+    "module": "users",
+    "phrase": "Dodaj novega uporabnika"
+  },
+  {
+    "id": 8,
+    "module": "users",
+    "phrase": "Izbriši uporabnika"
   }
 ]
