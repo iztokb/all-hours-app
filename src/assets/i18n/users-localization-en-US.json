@@ -38,5 +38,15 @@
     "id": 8,
     "module": "users",
     "phrase": "Delete user"
+  },
+  {
+    "id": 9,
+    "module": "users",
+    "phrase": "Add absence for user"
+  },
+  {
+    "id": 10,
+    "module": "users",
+    "phrase": "Add new absence"
   }
 ]

@@ -38,5 +38,15 @@
     "id": 8,
     "module": "users",
     "phrase": "Izbriši uporabnika"
+  },
+  {
+    "id": 9,
+    "module": "users",
+    "phrase": "Dodaj odsotnost za uporabnika"
+  },
+  {
+    "id": 10,
+    "module": "users",
+    "phrase": "Dodajanje odsotnosti"
   }
 ]
