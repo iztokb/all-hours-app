@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IAbsenceDefinition } from '../../models';
+import { IAbsenceDefinition } from 'src/app/features/shared/api-models';
 
 export const LoadAbsenceDefinitionsAction = createAction(
   '[Absence definition] Load absence definitions'

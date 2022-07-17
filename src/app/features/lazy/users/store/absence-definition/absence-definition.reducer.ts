@@ -1,6 +1,7 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { IAbsenceDefinition, IAbsenceDefinitionState } from '../../models';
+import { IAbsenceDefinitionState } from '../../models';
+import { IAbsenceDefinition } from 'src/app/features/shared/api-models';
 import * as absenceDefinitionActions from './absence-definition.actions';
 
 const absenceDefinitionAdapter: EntityAdapter<IAbsenceDefinition> =

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IAbsenceDefinition } from '../../models';
+import { IAbsenceDefinition } from 'src/app/features/shared/api-models';
 import { getUsersFeatureSlice$ } from '../users';
 
 /**

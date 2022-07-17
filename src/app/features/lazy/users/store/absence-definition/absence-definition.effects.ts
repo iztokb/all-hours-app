@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, switchMap, catchError } from 'rxjs';
 import * as absenceDefinitionActions from './absence-definition.actions';
 import { HttpService } from 'src/app/core';
-import { IAbsenceDefinition } from '../../models';
+import { IAbsenceDefinition } from 'src/app/features/shared/api-models';
 
 @Injectable()
 export class AbsenceDefinitionEffects {
