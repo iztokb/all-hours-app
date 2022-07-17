@@ -31,6 +31,7 @@
           <app-users-list-item
             *cdkVirtualFor="let user of usersList$ | async"
             [user]="user"
+            (addAbsenceForUser)="addAbsenceForUser($event, device)"
             (deleteUser)="deleteUser($event)"
             (openUserDetail)="openUserDetail($event, device)"
           >

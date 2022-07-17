@@ -11,6 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from 'src/app/core';
+import { IAbsence } from 'src/app/features/shared/api-models';
 import { IPopupData, IUser, SupportedPopupContent } from '../../models';
 
 @Component({

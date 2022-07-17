@@ -1,21 +1,41 @@
-<app-dialog-title
-  [enableDrag]="true"
-  [enableMinimize]="false"
-  [icon]="'people'"
-  [iconTooltip]="'users-6' | i18nPhrase"
-  [title]="
-    popUpData?.payload?.Id && popUpData?.payload?.Id !== ''
-      ? ('users-5' | i18nPhrase)
-      : ('users-4' | i18nPhrase)
-  "
-  (closeDialog)="closeDialog()"
-></app-dialog-title>
-<div class="content-container">
-  <ng-container *ngIf="popUpData?.contentSignature === 'USER_FORM'">
-    <app-user-form
-      [record]="popUpData?.payload"
-      (cancel)="closeDialog()"
-      (saveRecord)="submitForm($event)"
-    ></app-user-form>
+<ng-container *ngIf="popUpData?.contentSignature === 'ABSENCE_FORM'">
+  <ng-container
+    *ngIf="popUpData | validateAbsenceFormRecordInput as absenceRecord"
+  >
+    <app-dialog-title
+      [enableDrag]="true"
+      [enableMinimize]="false"
+      [icon]="'people'"
+      [iconTooltip]="'users-6' | i18nPhrase"
+      [title]="'users-10' | i18nPhrase"
+      (closeDialog)="closeDialog()"
+    ></app-dialog-title>
+    <div class="content-container">
+      <app-absence-form></app-absence-form>
+    </div>
   </ng-container>
-</div>
+</ng-container>
+
+<ng-container *ngIf="popUpData?.contentSignature === 'USER_FORM'">
+  <ng-container *ngIf="popUpData | validateUserFormRecordInput as userRecord">
+    <app-dialog-title
+      [enableDrag]="true"
+      [enableMinimize]="false"
+      [icon]="'people'"
+      [iconTooltip]="'users-6' | i18nPhrase"
+      [title]="
+        userRecord?.Id && userRecord?.Id !== ''
+          ? ('users-5' | i18nPhrase)
+          : ('users-4' | i18nPhrase)
+      "
+      (closeDialog)="closeDialog()"
+    ></app-dialog-title>
+    <div class="content-container">
+      <app-user-form
+        [record]="popUpData | validateUserFormRecordInput"
+        (cancel)="closeDialog()"
+        (saveRecord)="submitForm($event)"
+      ></app-user-form>
+    </div>
+  </ng-container>
+</ng-container>

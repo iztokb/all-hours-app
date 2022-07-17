@@ -1,5 +1,5 @@
 import { EntityState } from '@ngrx/entity';
-import { IAbsenceDefinition, IAbsenceDefinitionState } from './absences.model';
+import { IAbsenceDefinitionState } from './absences.model';
 
 /**
  * @interface IUser

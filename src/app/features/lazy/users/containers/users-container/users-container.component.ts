@@ -16,7 +16,9 @@ import {
   ILocalization,
   SidenavStatus,
 } from 'src/app/core';
+import { IAbsence } from 'src/app/features/shared/api-models';
 import { ISearch } from 'src/app/features/shared/data-settings';
+import { PrepareEmptyAbsenceRecord } from 'src/app/features/shared/forms';
 import { IPopupData, IUser, SupportedPopupContent, SupportedPopupContentSignatures } from '../../models';
 import { ModuleInitService } from '../../services';
 import { DeleteUserAction, getUsersList$, PostUserAction, UsersSearchChangedAction } from '../../store';
@@ -60,6 +62,69 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._moduleInitService.teardownModule();
+  }
+
+  addAbsenceForUser(user: IUser, deviceEnvironment: IDevice): void {
+    const emptyAbsenceRecord = PrepareEmptyAbsenceRecord();
+
+    // Modify record with current user
+    const modifiedRecord: IAbsence = {
+      ...emptyAbsenceRecord,
+      UserId: user.Id
+    };
+
+    // Prepare dialog data
+    const dialogConfig = new MatDialogConfig();
+
+    // Prepare data to be passed to pop-up component
+    const dialogData: IPopupData = {
+      contentSignature: 'ABSENCE_FORM',
+      payload: modifiedRecord,
+    };
+
+    const availableHeight = deviceEnvironment?.screen?.height
+      ? deviceEnvironment.screen.height
+      : 0;
+    const availableWidth = deviceEnvironment?.screen?.width
+      ? deviceEnvironment.screen.width
+      : 0;
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.minHeight =
+      deviceEnvironment.screen?.activeScreenSize === 'HANDSET'
+        ? availableHeight * 0.9
+        : deviceEnvironment?.screen?.activeScreenSize === 'TABLET'
+        ? availableHeight * 0.7
+        : availableHeight * 0.4;
+    dialogConfig.minWidth =
+      deviceEnvironment.screen?.activeScreenSize === 'HANDSET'
+        ? availableWidth * 0.9
+        : deviceEnvironment?.screen?.activeScreenSize === 'TABLET'
+        ? availableWidth * 0.7
+        : availableWidth * 0.25;
+
+    dialogConfig.data = dialogData;
+
+    // Open the dialog.
+    const dialogRef = this._dialog.open(PopUpContainerComponent, dialogConfig);
+
+    // Subscribe to close event
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((s) => s !== null),
+        takeUntil(this._unsubscribe)
+      )
+      .subscribe((result: SupportedPopupContent) => {
+        if (!result) {
+          return;
+        } else {
+          console.log('Record to be submitted', result)
+
+        }
+      });
+
   }
 
   addNewUserClicked(deviceEnvironment: IDevice): void {
@@ -113,7 +178,8 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
           return;
         } else {
           console.log('Record to be submitted', result)
-          this._store.dispatch(PostUserAction({record: result}))
+          const record: IUser = result as unknown as IUser;
+          this._store.dispatch(PostUserAction({record}))
         }
       });
 

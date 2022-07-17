@@ -19,6 +19,10 @@ export class UsersListItemComponent implements OnInit {
    * OUTPUTS
    */
   /**
+   * Emitted when user clicks new absence for user button
+   */
+  @Output() addAbsenceForUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+  /**
    * Eitted when user clicks delete button
    */
   @Output() deleteUser: EventEmitter<IUser> = new EventEmitter<IUser>();
@@ -40,6 +44,10 @@ export class UsersListItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  addAbsenceForUserClicked(user: IUser): void {
+    this.addAbsenceForUser.emit(user);
+  }
 
   deleteUserClicked(user: IUser): void {
     this.deleteUser.emit(user);

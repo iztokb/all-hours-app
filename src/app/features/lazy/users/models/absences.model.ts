@@ -1,16 +1,5 @@
 import { EntityState } from '@ngrx/entity';
-
-export interface IAbsenceDefinition {
-  Id: string;
-  Name: string;
-  IntegrationId: number;
-  Code: number;
-  Type: number;
-  IsAvailableForAdminsOnly: number;
-  CategoryDefinitionId: string;
-  CategoryDefinitionName: string;
-  Fraction: number;
-}
+import { IAbsenceDefinition } from 'src/app/features/shared/api-models';
 
 export interface IAbsenceDefinitionState
   extends EntityState<IAbsenceDefinition> {

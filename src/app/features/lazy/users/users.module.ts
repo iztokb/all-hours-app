@@ -16,10 +16,15 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DataSettingsModule } from 'src/app/features/shared/data-settings';
 import { DialogTitleModule } from 'src/app/features/shared/dialog-title';
+import { SharedFormsModule } from 'src/app/features/shared/forms';
 import { LocalizationModule } from 'src/app/features/shared/localization';
 import { PopUpContainerComponent, UsersContainerComponent } from './containers';
 import { UsersModuleEffects, UsersModuleReducer } from './store';
 import { UserFormComponent, UsersListItemComponent } from './component';
+import {
+  ValidateAbsenceFormRecordInputPipe,
+  ValidateUserFormRecordInputPipe,
+} from './pipes';
 
 const MODULE_ROUTES: Routes = [
   {
@@ -34,6 +39,8 @@ const MODULE_ROUTES: Routes = [
     UserFormComponent,
     UsersContainerComponent,
     UsersListItemComponent,
+    ValidateAbsenceFormRecordInputPipe,
+    ValidateUserFormRecordInputPipe,
   ],
   imports: [
     CommonModule,
@@ -54,6 +61,7 @@ const MODULE_ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(MODULE_ROUTES),
     ScrollingModule,
+    SharedFormsModule,
     StoreModule.forFeature('users', UsersModuleReducer),
   ],
 })

@@ -1,3 +1,4 @@
+import { IAbsence } from 'src/app/features/shared/api-models';
 import { IUser } from './users.model';
 
 /**
@@ -5,14 +6,14 @@ import { IUser } from './users.model';
  * @description
  * Available content signatures that can be used in pop-up component
  */
-export type SupportedPopupContentSignatures = 'USER_FORM';
+export type SupportedPopupContentSignatures = 'ABSENCE_FORM' | 'USER_FORM';
 
 /**
  * @type SupportedPopupContent
  * @description
  * Available content that can be sued in pop-up component
  */
-export type SupportedPopupContent = IUser;
+export type SupportedPopupContent = IAbsence | IUser;
 
 /**
  * @interface IPopupData
