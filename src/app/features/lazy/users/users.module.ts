@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DataSettingsModule } from 'src/app/features/shared/data-settings';
@@ -49,6 +50,7 @@ const MODULE_ROUTES: Routes = [
     MatInputModule,
     MatMenuModule,
     MatProgressBarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     RouterModule.forChild(MODULE_ROUTES),
     ScrollingModule,

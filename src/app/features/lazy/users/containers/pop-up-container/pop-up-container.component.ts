@@ -11,7 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from 'src/app/core';
-import { IPopupData, IUser } from '../../models';
+import { IPopupData, IUser, SupportedPopupContent } from '../../models';
 
 @Component({
   selector: 'app-pop-up-container',
@@ -52,7 +52,7 @@ export class PopUpContainerComponent implements OnInit {
     this._dialogRef.close(null);
   }
 
-  submitForm(user: IUser): void {
-    console.log('submit user', user);
+  submitForm(user: SupportedPopupContent): void {
+    this._dialogRef.close(user);
   }
 }

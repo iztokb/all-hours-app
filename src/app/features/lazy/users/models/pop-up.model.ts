@@ -8,11 +8,18 @@ import { IUser } from './users.model';
 export type SupportedPopupContentSignatures = 'USER_FORM';
 
 /**
+ * @type SupportedPopupContent
+ * @description
+ * Available content that can be sued in pop-up component
+ */
+export type SupportedPopupContent = IUser;
+
+/**
  * @interface IPopupData
  * @description
  * Interface representing the data that is passed to PopUpComponent
  */
 export interface IPopupData {
   contentSignature: SupportedPopupContentSignatures;
-  payload: IUser;
+  payload: SupportedPopupContent;
 }

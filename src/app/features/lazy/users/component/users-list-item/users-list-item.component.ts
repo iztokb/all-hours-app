@@ -19,6 +19,11 @@ export class UsersListItemComponent implements OnInit {
    * OUTPUTS
    */
   /**
+   * Eitted when user clicks delete button
+   */
+  @Output() deleteUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+
+  /**
    * Emitted when user clicks detail button
    */
   @Output() openUserDetail: EventEmitter<IUser> = new EventEmitter<IUser>();
@@ -35,6 +40,10 @@ export class UsersListItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  deleteUserClicked(user: IUser): void {
+    this.deleteUser.emit(user);
+  }
 
   openUserDetailClicked(user: IUser): void {
     this.openUserDetail.emit(user);

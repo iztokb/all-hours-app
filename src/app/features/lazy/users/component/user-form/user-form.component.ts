@@ -33,7 +33,18 @@ export class UserFormComponent implements OnInit {
   /**
    * INPUTS
    */
-  @Input() record!: IUser | undefined;
+  private _record!: IUser | undefined;
+  @Input()
+  set record(value: IUser | undefined) {
+    this._record = value;
+
+    if (value) {
+      this.populateFormWithData(value);
+    }
+  }
+  get record() {
+    return this._record;
+  }
 
   @Input() submitInProgress!: boolean;
 
@@ -45,7 +56,9 @@ export class UserFormComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form = this.createForm();
+    if (!this.form) {
+      this.form = this.createForm();
+    }
   }
 
   cancelClicked() {
@@ -69,6 +82,10 @@ export class UserFormComponent implements OnInit {
   protected populateFormWithData(record: IUser): void {
     if (!record) {
       return;
+    }
+
+    if (!this.form) {
+      this.form = this.createForm();
     }
 
     this.form.setValue({

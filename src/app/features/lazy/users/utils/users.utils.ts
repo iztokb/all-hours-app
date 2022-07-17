@@ -1,4 +1,4 @@
-import { IUser } from '../models';
+import { IUser, IUserApiPayload } from '../models';
 
 export const PrepareEmptyUserRecord = (): IUser => {
   return {
@@ -34,4 +34,15 @@ export const PrepareEmptyUserRecord = (): IUser => {
     State: '',
     UserAccountId: null,
   };
+};
+
+export const TransformNewUserToApiIntefacte = (user: IUser) => {
+  // Transform new user record to interface that is compliant with API
+  const transformedRecord: IUserApiPayload = {
+    ...user,
+  };
+
+  delete transformedRecord['Id'];
+
+  return transformedRecord;
 };

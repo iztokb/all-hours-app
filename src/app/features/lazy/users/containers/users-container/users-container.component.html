@@ -31,11 +31,22 @@
           <app-users-list-item
             *cdkVirtualFor="let user of usersList$ | async"
             [user]="user"
+            (deleteUser)="deleteUser($event)"
             (openUserDetail)="openUserDetail($event, device)"
           >
           </app-users-list-item>
         </cdk-virtual-scroll-viewport>
       </main>
+
+      <button
+        mat-fab
+        color="primary"
+        class="new-user-button transition"
+        [matTooltip]="'users-7' | i18nPhrase"
+        (click)="addNewUserClicked(device)"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
     </ng-container>
   </ng-container>
 </ng-container>
