@@ -12,27 +12,49 @@ import { Router } from '@angular/router';
 @Injectable()
 export class IdentityEffects {
   constructor(
-    private _router: Router,
     private _actions$: Actions,
     private _storageService: StorageService,
     private _identityService: IdentityService
   ) {}
 
-  logoutAuthenticatedIdentity$ = createEffect(
-    () =>
-      this._actions$.pipe(
-        ofType(identityActions.LogoutAuthenticatedIdentityAction),
-        tap((req) => {
-          // Remove token from storage
-          this._storageService.deleteItemFromStorage(
-            'LOCAL_STORAGE',
-            'AUTH_TOKEN'
-          );
+  logoutAuthenticatedIdentity$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(identityActions.LogoutAuthenticatedIdentityAction),
+      exhaustMap((req) => {
+        return of(req).pipe(
+          tap((req) => {
+            // Remove token from storage
+            this._storageService.deleteItemFromStorage(
+              'LOCAL_STORAGE',
+              'AUTH_TOKEN'
+            );
+          }),
+          switchMap((res) => {
+            return [identityActions.LogoutAuthenticatedIdentitySuccessAction()];
+          }),
+          catchError((error) => {
+            return [
+              identityActions.LogoutAuthenticatedIdentityFailedAction({
+                error,
+              }),
+            ];
+          })
+        );
+      })
+    )
+  );
 
-          this._router.navigateByUrl('/');
-        })
-      ),
-    { dispatch: false }
+  logoutAuthenticatedIdentitySuccess$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(identityActions.LogoutAuthenticatedIdentitySuccessAction),
+      exhaustMap((req) => {
+        return of(req).pipe(
+          switchMap((res) => {
+            return [RouterGoAction({ path: ['/authentication'] })];
+          })
+        );
+      })
+    )
   );
 
   resolveAuthenticatedIdentity$ = createEffect(() =>

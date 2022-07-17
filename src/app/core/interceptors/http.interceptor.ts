@@ -10,10 +10,14 @@ import { catchError, Observable, throwError, of, tap, switchMap } from 'rxjs';
 import { IApplicationState } from '../models';
 import { Store } from '@ngrx/store';
 import { LogoutAuthenticatedIdentityAction } from '../store';
+import { IdentityService } from '../services';
 
 @Injectable()
 export class ApplicationHttpInterceptor implements HttpInterceptor {
-  constructor(private _store: Store<IApplicationState>) {}
+  constructor(
+    private _store: Store<IApplicationState>,
+    private _identityService: IdentityService
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -26,7 +30,7 @@ export class ApplicationHttpInterceptor implements HttpInterceptor {
         return of(error).pipe(
           tap((httpError: HttpErrorResponse) => {
             if (httpError.status === 401) {
-              this._store.dispatch(LogoutAuthenticatedIdentityAction());
+              this._identityService.logout();
             }
 
             return httpError as HttpErrorResponse;
