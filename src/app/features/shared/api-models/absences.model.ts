@@ -11,6 +11,34 @@ export interface IAbsenceDefinition {
 }
 
 export interface IAbsence {
+  Id: string;
+  UserId: string;
+  FirstName: string;
+  MiddleName: string;
+  LastName: string;
+  Timestamp: Date;
+  AbsenceDefinitionId: string;
+  AbsenceDefinitionName: string;
+  InsertedOn: Date;
+  Origin: number;
+  OriginDisplayName: string;
+  Comment: string;
+  IsAuthentic: boolean;
+  IconId: string;
+  IsCalculated: boolean;
+  Status: number;
+  ApprovalRequest: boolean;
+  PartialTimeFrom: Date | null;
+  PartialTimeTo: Date | null;
+  PartialTimeDuration: number;
+  IsPartial: boolean;
+  OverrideHolidayAbsence: boolean;
+  IsModified: boolean;
+  ModifiedByUser: boolean;
+  ModifiedOn: Date | null;
+}
+
+export interface IAbsenceApiPayload {
   UserId: string;
   Timestamp: Date | null;
   AbsenceDefinitionId: string;
