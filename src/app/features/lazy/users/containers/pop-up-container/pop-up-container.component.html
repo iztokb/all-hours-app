@@ -11,7 +11,11 @@
       (closeDialog)="closeDialog()"
     ></app-dialog-title>
     <div class="content-container">
-      <app-absence-form></app-absence-form>
+      <app-absence-form
+        [record]="popUpData | validateAbsenceFormRecordInput"
+        (cancel)="closeDialog()"
+        (saveRecord)="submitForm($event)"
+      ></app-absence-form>
     </div>
   </ng-container>
 </ng-container>

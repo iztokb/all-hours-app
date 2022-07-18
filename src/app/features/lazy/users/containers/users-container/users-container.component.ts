@@ -95,8 +95,8 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
       deviceEnvironment.screen?.activeScreenSize === 'HANDSET'
         ? availableHeight * 0.9
         : deviceEnvironment?.screen?.activeScreenSize === 'TABLET'
-        ? availableHeight * 0.7
-        : availableHeight * 0.4;
+        ? availableHeight * 0.8
+        : availableHeight * 0.55;
     dialogConfig.minWidth =
       deviceEnvironment.screen?.activeScreenSize === 'HANDSET'
         ? availableWidth * 0.9
