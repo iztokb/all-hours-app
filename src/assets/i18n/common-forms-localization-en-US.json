@@ -53,5 +53,50 @@
     "id": 11,
     "module": "common-forms",
     "phrase": "Email address is not valid"
+  },
+  {
+    "id": 12,
+    "module": "common-forms",
+    "phrase": "Choose"
+  },
+  {
+    "id": 13,
+    "module": "common-forms",
+    "phrase": "Absence type"
+  },
+  {
+    "id": 14,
+    "module": "common-forms",
+    "phrase": "User"
+  },
+  {
+    "id": 15,
+    "module": "common-forms",
+    "phrase": "Comment"
+  },
+  {
+    "id": 16,
+    "module": "common-forms",
+    "phrase": "Enter"
+  },
+  {
+    "id": 17,
+    "module": "common-forms",
+    "phrase": "From"
+  },
+  {
+    "id": 18,
+    "module": "common-forms",
+    "phrase": "To"
+  },
+  {
+    "id": 19,
+    "module": "common-forms",
+    "phrase": "Confirm"
+  },
+  {
+    "id": 20,
+    "module": "common-forms",
+    "phrase": "Cancel"
   }
 ]

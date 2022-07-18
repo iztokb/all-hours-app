@@ -53,5 +53,50 @@
     "id": 11,
     "module": "common-forms",
     "phrase": "Elektronski naslov ni pravilen"
+  },
+  {
+    "id": 12,
+    "module": "common-forms",
+    "phrase": "Izberite"
+  },
+  {
+    "id": 13,
+    "module": "common-forms",
+    "phrase": "Vrsta odsotnosti"
+  },
+  {
+    "id": 14,
+    "module": "common-forms",
+    "phrase": "Uporabnik"
+  },
+  {
+    "id": 15,
+    "module": "common-forms",
+    "phrase": "Komentar"
+  },
+  {
+    "id": 16,
+    "module": "common-forms",
+    "phrase": "Vnesite"
+  },
+  {
+    "id": 17,
+    "module": "common-forms",
+    "phrase": "Od"
+  },
+  {
+    "id": 18,
+    "module": "common-forms",
+    "phrase": "Do"
+  },
+  {
+    "id": 19,
+    "module": "common-forms",
+    "phrase": "Potrdi"
+  },
+  {
+    "id": 20,
+    "module": "common-forms",
+    "phrase": "Prekliči"
   }
 ]
