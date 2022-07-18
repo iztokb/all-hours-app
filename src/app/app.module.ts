@@ -5,6 +5,7 @@ import commonLocaleEn from '@angular/common/locales/en';
 import extraLocaleEn from '@angular/common/locales/extra/en';
 import extraLocaleSl from '@angular/common/locales/extra/sl';
 import commonLocaleSl from '@angular/common/locales/sl';
+import { MatNativeDateModule } from '@angular/material/core';
 import { AllHoursCoreModule } from './core/all-hours-core.module';
 
 /**
@@ -44,12 +45,14 @@ import {
   MatLocaleProvider,
 } from './core';
 import { registerLocaleData } from '@angular/common';
+import { DateAdapter } from '@angular/material/core';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     AllHoursCoreModule.forRoot(),
     BrowserAnimationsModule,
     BrowserModule,
+    MatNativeDateModule,
     RouterModule.forRoot(APPLICATION_ROUTES, {}),
   ],
   providers: [LocaleProvider, MatLocaleProvider],
