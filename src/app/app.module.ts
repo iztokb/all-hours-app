@@ -5,7 +5,7 @@ import commonLocaleEn from '@angular/common/locales/en';
 import extraLocaleEn from '@angular/common/locales/extra/en';
 import extraLocaleSl from '@angular/common/locales/extra/sl';
 import commonLocaleSl from '@angular/common/locales/sl';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { AllHoursCoreModule } from './core/all-hours-core.module';
 
 /**
@@ -55,7 +55,11 @@ import { DateAdapter } from '@angular/material/core';
     MatNativeDateModule,
     RouterModule.forRoot(APPLICATION_ROUTES, {}),
   ],
-  providers: [LocaleProvider, MatLocaleProvider],
+  providers: [
+    LocaleProvider,
+    MatLocaleProvider,
+    { provide: MAT_DATE_LOCALE, useValue: 'sl-SI' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

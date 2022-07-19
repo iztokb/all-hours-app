@@ -1,1 +1,56 @@
-<p>absences-container works!</p>
+<ng-container *ngIf="activeLocalization$ | async as activeLocalization">
+  <ng-container *ngIf="deviceEnvironment$ | async as device">
+    <div class="mat-toolbar mat-toolbar-single-row mat-typography">
+      <div class="title-container">
+        <h3 class="title">
+          {{ "absences-1" | i18nPhrase }}
+        </h3>
+      </div>
+    </div>
+    <ng-container *ngIf="sidenavStatus$ | async as sidenavStatus">
+      <main
+        [ngClass]="{
+          'main-container': sidenavStatus === 'CLOSED',
+          'main-container-with-opened-sidenav': sidenavStatus === 'OPENED'
+        }"
+      >
+        <div class="data-setting-container">
+          <app-data-settings
+            [listSubtitle]="'absences-2' | i18nPhrase"
+            [listTitle]="'absences-1' | i18nPhrase"
+            [recordCount]="(absencesList$ | async)?.length"
+            [providedSearchValue]="null"
+            [providedPeriodChooserValue]="defaultPeriodChooseValue"
+            [showPeriodChooser]="true"
+            (loadData)="loadData($event)"
+            (searchHasChanged)="searchChanged($event)"
+          ></app-data-settings>
+        </div>
+        <cdk-virtual-scroll-viewport
+          appendOnly
+          itemSize="20"
+          class="list-container"
+        >
+          <!--  <app-users-list-item
+            *cdkVirtualFor="let user of usersList$ | async"
+            [user]="user"
+            (addAbsenceForUser)="addAbsenceForUser($event, device)"
+            (deleteUser)="deleteUser($event)"
+            (openUserDetail)="openUserDetail($event, device)"
+          >
+          </app-users-list-item> -->
+        </cdk-virtual-scroll-viewport>
+      </main>
+
+      <!--  <button
+        mat-fab
+        color="primary"
+        class="new-user-button transition"
+        [matTooltip]="'users-7' | i18nPhrase"
+        (click)="addNewUserClicked(device)"
+      >
+        <mat-icon>add</mat-icon>
+      </button> -->
+    </ng-container>
+  </ng-container>
+</ng-container>
