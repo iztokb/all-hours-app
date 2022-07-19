@@ -36,7 +36,7 @@ export const PrepareEmptyUserRecord = (): IUser => {
   };
 };
 
-export const TransformNewUserToApiIntefacte = (user: IUser) => {
+export const TransformNewUserToApiInteface = (user: IUser) => {
   // Transform new user record to interface that is compliant with API
   const transformedRecord: IUserApiPayload = {
     ...user,

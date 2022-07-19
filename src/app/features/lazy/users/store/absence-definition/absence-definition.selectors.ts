@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ICatalogue } from 'src/app/core';
 import { IAbsenceDefinition } from 'src/app/features/shared/api-models';
 import { getUsersFeatureSlice$ } from '../users';
 
@@ -37,9 +38,9 @@ const getUsersRawList$ = createSelector(
 
 /**
  * @description
- * Get absence definition list
+ * Get raw absence definition list
  */
-export const getAbsenceDefinitionsList$ = createSelector(
+export const getRawAbsenceDefinitionsList$ = createSelector(
   getUsersRawList$,
   (list) => {
     if (!list) {
@@ -47,5 +48,25 @@ export const getAbsenceDefinitionsList$ = createSelector(
     }
 
     return list;
+  }
+);
+
+/**
+ * @description
+ * Get absences type list as ICatalogue record
+ */
+export const getAbsencesListForSelect$ = createSelector(
+  getRawAbsenceDefinitionsList$,
+  (list) => {
+    return list.map((record) => {
+      const transformedItem: ICatalogue = {
+        disabled: false,
+        signature: record.Id,
+        value: record.CategoryDefinitionName,
+        visible: true,
+      };
+
+      return transformedItem;
+    });
   }
 );

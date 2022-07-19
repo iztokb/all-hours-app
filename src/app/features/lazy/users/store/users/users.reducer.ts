@@ -64,6 +64,27 @@ export const UsersReducer = createReducer(
       loading: false,
     });
   }),
+  on(usersActions.PostUserAbsenceAction, (state, payload) => {
+    return {
+      ...state,
+      posted: false,
+      posting: true,
+    };
+  }),
+  on(usersActions.PostUserAbsenceFailedAction, (state, payload) => {
+    return {
+      ...state,
+      posted: false,
+      posting: false,
+    };
+  }),
+  on(usersActions.PostUserAbsenceSuccessAction, (state, payload) => {
+    return {
+      ...state,
+      posted: true,
+      posting: false,
+    };
+  }),
   on(usersActions.PostUserAction, (state, payload) => {
     return {
       ...state,

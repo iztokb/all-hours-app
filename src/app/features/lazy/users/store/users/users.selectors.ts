@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { EscapeRegex } from 'src/app/core';
+import { EscapeRegex, ICatalogue } from 'src/app/core';
+import { IAbsenceUser } from 'src/app/features/shared/api-models';
 import { IUser, IUsersModulestate } from '../../models';
 
 export const getUsersFeatureSlice$ =
@@ -54,7 +55,7 @@ const getUsersEntities$ = createSelector(
  * @description
  * Get users list
  */
-const getUsersRawList$ = createSelector(getUsersEntities$, (entities) => {
+const getRawUsersList$ = createSelector(getUsersEntities$, (entities) => {
   return Object.keys(entities).map((key) => entities[key]) as IUser[];
 });
 
@@ -63,7 +64,7 @@ const getUsersRawList$ = createSelector(getUsersEntities$, (entities) => {
  * Get users list with applied filter by search term
  */
 const getUsersFilteredList$ = createSelector(
-  getUsersRawList$,
+  getRawUsersList$,
   getUsersActiveSearch$,
   (list, search) => {
     if (!list) {
@@ -119,3 +120,23 @@ export const getUsersList$ = createSelector(getUsersFilteredList$, (list) => {
 
   return list;
 });
+
+/**
+ * @description
+ * Get users list as IAbsenceUser record
+ */
+export const getUsersListForSelect$ = createSelector(
+  getRawUsersList$,
+  (list) => {
+    return list.map((record) => {
+      const transformedItem: IAbsenceUser = {
+        FirstName: record?.FirstName ? record?.FirstName : '',
+        Id: record.Id,
+        LastName: record?.LastName ? record.LastName : '',
+        MiddleName: record?.MiddleName ? record.MiddleName : '',
+      };
+
+      return transformedItem;
+    });
+  }
+);

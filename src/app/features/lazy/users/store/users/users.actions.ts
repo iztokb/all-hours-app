@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IAbsence } from 'src/app/features/shared/api-models';
 import { IUser } from '../../models';
 
 export const DeleteUserAction = createAction(
@@ -26,6 +27,21 @@ export const LoadUsersFailedAction = createAction(
 export const LoadUsersSuccessAction = createAction(
   '[Users] Load Users success',
   props<{ users: IUser[] }>()
+);
+
+export const PostUserAbsenceAction = createAction(
+  '[Users] Post absence for user',
+  props<{ absence: IAbsence }>()
+);
+
+export const PostUserAbsenceFailedAction = createAction(
+  '[Users] Post absence for user failed',
+  props<{ error: any }>()
+);
+
+export const PostUserAbsenceSuccessAction = createAction(
+  '[Users] Post absence for user success',
+  props<{ absence: IAbsence }>()
 );
 
 export const PostUserAction = createAction(

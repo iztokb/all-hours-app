@@ -6,7 +6,9 @@ import { Observable, EMPTY } from 'rxjs';
 import * as usersActions from './users.actions';
 import { HttpService } from 'src/app/core';
 import { IUser, IUserApiPayload } from '../../models';
-import { TransformNewUserToApiIntefacte } from '../../utils';
+import { TransformNewUserToApiInteface } from '../../utils';
+import { IAbsenceApiPayload } from 'src/app/features/shared/api-models';
+import { TransformAbsenceRecordToApiInterface } from 'src/app/features/shared/forms';
 
 @Injectable()
 export class UsersEffects {
@@ -51,12 +53,43 @@ export class UsersEffects {
     );
   });
 
+  postAbsenceForUser$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(usersActions.PostUserAbsenceAction),
+      exhaustMap((req) => {
+        // Transform record to the interface that is acceptable for API
+        const transformedRecord = TransformAbsenceRecordToApiInterface(
+          req.absence,
+          'POST'
+        );
+        return this._httpService
+          .post<IAbsenceApiPayload>(
+            'v1/Absences',
+            false,
+            transformedRecord,
+            null,
+            null,
+            true
+          )
+          .pipe(
+            switchMap((res) => {
+              const payload = res as unknown as IUser;
+              return [usersActions.PostUserSuccessAction({ user: payload })];
+            }),
+            catchError((error) => {
+              return [usersActions.PostUserFailedAction({ error })];
+            })
+          );
+      })
+    )
+  );
+
   postUser$ = createEffect(() =>
     this._actions$.pipe(
       ofType(usersActions.PostUserAction),
       exhaustMap((req) => {
         // Transform record to the interface that is acceptable for API
-        const transformedRecord = TransformNewUserToApiIntefacte(req.record);
+        const transformedRecord = TransformNewUserToApiInteface(req.record);
         return this._httpService
           .post<IUserApiPayload>(
             'v1/Users',

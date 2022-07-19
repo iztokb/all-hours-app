@@ -21,7 +21,7 @@ import { ISearch } from 'src/app/features/shared/data-settings';
 import { PrepareEmptyAbsenceRecord } from 'src/app/features/shared/forms';
 import { IPopupData, IUser, SupportedPopupContent, SupportedPopupContentSignatures } from '../../models';
 import { ModuleInitService } from '../../services';
-import { DeleteUserAction, getUsersList$, PostUserAction, UsersSearchChangedAction } from '../../store';
+import { DeleteUserAction, getUsersList$, PostUserAbsenceAction, PostUserAction, UpdateUserAction, UsersSearchChangedAction } from '../../store';
 import { PrepareEmptyUserRecord } from '../../utils';
 import { PopUpContainerComponent } from '../pop-up-container/pop-up-container.component';
 
@@ -123,8 +123,8 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
         if (!result) {
           return;
         } else {
-          console.log('Record to be submitted', result)
-
+          const recordToBeSubmitted: IAbsence = result as unknown as IAbsence;
+          this._store.dispatch(PostUserAbsenceAction({absence: recordToBeSubmitted}))
         }
       });
 
@@ -240,7 +240,9 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
         if (!result) {
           return;
         } else {
-          console.log('Record to be submitted', result)
+          const recordToBeSubmitted: IUser = result as unknown as IUser;
+
+          this._store.dispatch(UpdateUserAction({record: recordToBeSubmitted}))
         }
       });
   }
