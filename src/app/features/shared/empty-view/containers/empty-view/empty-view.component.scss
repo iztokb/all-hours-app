@@ -1,0 +1,66 @@
+:host {
+  align-items: center;
+  display: grid;
+  grid:
+    "content" auto /
+    1fr;
+  gap: 4px;
+  justify-items: center;
+  min-height: 60vh;
+  min-width: 100%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.content {
+  align-items: center;
+  display: grid;
+  grid-area: content;
+  grid-row: 1 / span 1;
+  justify-items: center;
+  min-width: 100%;
+}
+
+.large-icon {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
+}
+
+/**
+ * SM DEVICES
+ */
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  :host {
+    align-items: center;
+    align-content: center;
+    display: grid;
+    grid:
+      "content" auto /
+      1fr;
+    gap: 4px;
+    justify-content: center;
+    min-height: 80vh;
+    min-width: 100%;
+  }
+}
+
+/**
+ * LG DEVICES
+ */
+@media screen and (min-width: 959px) {
+  :host {
+    align-items: center;
+    align-content: center;
+    display: grid;
+    grid:
+      "content" auto /
+      1fr;
+    gap: 4px;
+    justify-content: center;
+    min-height: 70vh;
+    min-width: 100%;
+  }
+}
