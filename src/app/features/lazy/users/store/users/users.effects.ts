@@ -81,7 +81,7 @@ export class UsersEffects {
 
   updateUser$ = createEffect(() =>
     this._actions$.pipe(
-      ofType(usersActions.PostUserAction),
+      ofType(usersActions.UpdateUserAction),
       exhaustMap((req) => {
         return this._httpService
           .put<IUserApiPayload>(
