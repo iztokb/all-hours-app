@@ -20,4 +20,79 @@
   <div class="filter-container"></div>
 </div>
 
-<div class="sorting-container"></div>
+<div class="sorting-container">
+  <ng-container *ngIf="showPeriodChooser">
+    <form
+      class="period-chooser-form"
+      [formGroup]="form"
+      novalidate
+      autocomplete="off"
+    >
+      <mat-form-field>
+        <mat-label>{{ "common-forms-17" | i18nPhrase }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="datepickerFrom"
+          [placeholder]="'common-forms-16' | i18nPhrase"
+          formControlName="from"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="datepickerFrom"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepickerFrom>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>
+              {{ "common-forms-20" | i18nPhrase }}
+            </button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              {{ "common-forms-19" | i18nPhrase }}
+            </button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+        <mat-error *ngIf="form.get('from')?.errors as errors">
+          <span *ngIf="errors['required']">
+            {{ "common-forms-4" | i18nPhrase }}
+          </span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ "common-forms-18" | i18nPhrase }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="datepickerTo"
+          [placeholder]="'common-forms-16' | i18nPhrase"
+          formControlName="to"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="datepickerTo"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepickerTo>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>
+              {{ "common-forms-20" | i18nPhrase }}
+            </button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              {{ "common-forms-19" | i18nPhrase }}
+            </button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+        <mat-error *ngIf="form.get('to')?.errors as errors">
+          <span *ngIf="errors['required']">
+            {{ "common-forms-4" | i18nPhrase }}
+          </span>
+        </mat-error>
+      </mat-form-field>
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        [disabled]="form?.invalid"
+        (click)="loadDataClicked()"
+      >
+        {{ "shared-6" | i18nPhrase }}
+      </button>
+    </form>
+  </ng-container>
+</div>

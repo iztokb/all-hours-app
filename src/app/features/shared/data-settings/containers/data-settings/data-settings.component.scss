@@ -46,6 +46,16 @@
   flex-direction: row;
 }
 
+.period-chooser-form {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .subtitle {
   margin: 0;
   overflow: hidden;
@@ -142,7 +152,7 @@
 
   .sorting-container {
     align-content: center;
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     flex-direction: column;
     height: inherit;
