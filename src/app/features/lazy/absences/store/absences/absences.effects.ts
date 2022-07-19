@@ -10,6 +10,28 @@ import * as absencesActions from './absences.actions';
 export class AbsencesEffects {
   constructor(private _actions$: Actions, private _httpService: HttpService) {}
 
+  deleteAbsence$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(absencesActions.DeleteAbsenceAction),
+      exhaustMap((req) => {
+        return this._httpService
+          .delete(`vi/Users/${req.absence.Id}`, false, null, null, true)
+          .pipe(
+            switchMap((res) => {
+              return [
+                absencesActions.DeleteAbsencesSuccessAction({
+                  absence: req.absence,
+                }),
+              ];
+            }),
+            catchError((error) => {
+              return [absencesActions.DeleteAbsencesFailedAction({ error })];
+            })
+          );
+      })
+    )
+  );
+
   loadAbsences$ = createEffect(() => {
     return this._actions$.pipe(
       ofType(absencesActions.LoadAbsencesAction),

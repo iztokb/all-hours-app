@@ -1,0 +1,21 @@
+<ng-container *ngIf="popUpData?.contentSignature === 'ABSENCE_FORM'">
+  <ng-container
+    *ngIf="popUpData | validateAbsenceFormRecordInput as absenceRecord"
+  >
+    <app-dialog-title
+      [enableDrag]="true"
+      [enableMinimize]="false"
+      [icon]="'people'"
+      [iconTooltip]="'users-6' | i18nPhrase"
+      [title]="'users-10' | i18nPhrase"
+      (closeDialog)="closeDialog()"
+    ></app-dialog-title>
+    <div class="content-container">
+      <app-absence-form
+        [record]="popUpData | validateAbsenceFormRecordInput"
+        (cancel)="closeDialog()"
+        (saveRecord)="submitForm($event)"
+      ></app-absence-form>
+    </div>
+  </ng-container>
+</ng-container>

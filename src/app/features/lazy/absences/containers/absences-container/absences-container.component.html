@@ -26,31 +26,31 @@
             (searchHasChanged)="searchChanged($event)"
           ></app-data-settings>
         </div>
-        <cdk-virtual-scroll-viewport
-          appendOnly
-          itemSize="20"
-          class="list-container"
-        >
-          <!--  <app-users-list-item
-            *cdkVirtualFor="let user of usersList$ | async"
-            [user]="user"
-            (addAbsenceForUser)="addAbsenceForUser($event, device)"
-            (deleteUser)="deleteUser($event)"
-            (openUserDetail)="openUserDetail($event, device)"
-          >
-          </app-users-list-item> -->
-        </cdk-virtual-scroll-viewport>
+        <ng-container *ngIf="absencesList$ | async as absences">
+          <ng-container *ngIf="absences.length > 0">
+            <cdk-virtual-scroll-viewport
+              appendOnly
+              itemSize="20"
+              class="list-container"
+            >
+              <app-absences-list-item
+                *cdkVirtualFor="let absence of absencesList$ | async"
+                [absence]="absence"
+                (deleteAbsence)="deleteAbsence($event)"
+                (openAbsenceDetail)="openAbsenceDetail($event, device)"
+              >
+              </app-absences-list-item>
+            </cdk-virtual-scroll-viewport>
+          </ng-container>
+          <ng-container *ngIf="absences.length === 0">
+            <app-empty-view
+              [explanation]="'shared-7' | i18nPhrase"
+              [icon]="'folder'"
+              [title]="'shared-8' | i18nPhrase"
+            ></app-empty-view>
+          </ng-container>
+        </ng-container>
       </main>
-
-      <!--  <button
-        mat-fab
-        color="primary"
-        class="new-user-button transition"
-        [matTooltip]="'users-7' | i18nPhrase"
-        (click)="addNewUserClicked(device)"
-      >
-        <mat-icon>add</mat-icon>
-      </button> -->
     </ng-container>
   </ng-container>
 </ng-container>

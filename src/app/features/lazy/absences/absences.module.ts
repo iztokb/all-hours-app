@@ -16,11 +16,17 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DataSettingsModule } from 'src/app/features/shared/data-settings';
 import { DialogTitleModule } from 'src/app/features/shared/dialog-title';
+import { EmptyViewModule } from 'src/app/features/shared/empty-view';
 import { SharedFormsModule } from 'src/app/features/shared/forms';
 import { LocalizationModule } from 'src/app/features/shared/localization';
-import { AbsencesContainerComponent } from './containers';
+import {
+  AbsencesContainerComponent,
+  PopUpContainerComponent,
+} from './containers';
 import { ModuleInitService } from './services';
 import { AbsencesModuleEffects, AbsencesModuleReducer } from './store';
+import { AbsencesListItemComponent } from './components';
+import { ValidateAbsenceFormRecordInputPipe } from './pipes';
 
 const MODULE_ROUTES: Routes = [
   {
@@ -30,12 +36,18 @@ const MODULE_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AbsencesContainerComponent],
+  declarations: [
+    AbsencesContainerComponent,
+    AbsencesListItemComponent,
+    PopUpContainerComponent,
+    ValidateAbsenceFormRecordInputPipe,
+  ],
   imports: [
     CommonModule,
     DataSettingsModule,
     DialogTitleModule,
     EffectsModule.forFeature(AbsencesModuleEffects),
+    EmptyViewModule,
     FormsModule,
     LocalizationModule,
     MatButtonModule,
