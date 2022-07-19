@@ -38,7 +38,7 @@
 }
 
 .all-hours-boot-text {
-  color: #fd7609;
+  color: #03a9f4;
 }
 
 .all-hours-boot-notification-title {
@@ -73,6 +73,11 @@
     color 6s ease-in-out infinite;
   animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
   stroke-linecap: round;
+}
+
+.all-hours-boot-boot-text {
+  font-size: 0.8rem;
+  color: #03a9f4;
 }
 
 @-webkit-keyframes rotate {
@@ -122,33 +127,33 @@
 @-webkit-keyframes color {
   100%,
   0% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
   40% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
   66% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
   80%,
   90% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
 }
 
 @keyframes color {
   100%,
   0% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
   40% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
   66% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
   80%,
   90% {
-    stroke: #fd7609;
+    stroke: #03a9f4;
   }
 }

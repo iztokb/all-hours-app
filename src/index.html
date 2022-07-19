@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" href="./assets/styles/common.css" />
+    <link rel="stylesheet" href="./assets/styles/boot.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -18,6 +19,42 @@
     />
   </head>
   <body class="mat-app-background mat-typography mat-theme">
-    <app-root></app-root>
+    <app-root>
+      <div id="root-container" class="all-hours-boot-init-container">
+        <div
+          id="all-hours-boot-spinner-container"
+          class="all-hours-boot-spinner-container"
+        >
+          <!-- <img
+            id="boot-logo"
+            class="all-hours-boot-boot-logo"
+            src="./assets/images/boot-logo.png"
+          /> -->
+          <div d="boot-logo" class="all-hours-boot-boot-text">
+            all-hours-app
+          </div>
+          <svg class="all-hours-boot-spinner" viewBox="25 25 50 50">
+            <circle
+              class="all-hours-boot-spinner-path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              stroke-width="2"
+              stroke-miterlimit="10"
+            ></circle>
+          </svg>
+        </div>
+        <div class="all-hours-boot-text-container">
+          <div id="all-hours-boot-text" class="all-hours-boot-text">
+            <h3 id="loading-title"></h3>
+          </div>
+        </div>
+      </div>
+    </app-root>
+    <noscript class="all-hours-boot-boot-text"
+      >Please enable JavaScript to continue using this application.</noscript
+    >
   </body>
+  <script src="assets/scripts/boot.js"></script>
 </html>
