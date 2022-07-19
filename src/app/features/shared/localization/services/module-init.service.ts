@@ -45,6 +45,8 @@ export class ModuleInitService
             localization: activeLocale.signature,
           };
         });
+
+    this.subscriptions.push(localizationSubscription);
   }
 
   teardownModule(): void {
