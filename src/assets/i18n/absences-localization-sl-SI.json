@@ -8,5 +8,15 @@
     "id": 2,
     "module": "absences",
     "phrase": "Število zapisov"
+  },
+  {
+    "id": 3,
+    "module": "absences",
+    "phrase": "Izbriši odsotnost"
+  },
+  {
+    "id": 4,
+    "module": "absences",
+    "phrase": "Uredi odsotnost"
   }
 ]

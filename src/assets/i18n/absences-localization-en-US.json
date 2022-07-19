@@ -8,5 +8,15 @@
     "id": 2,
     "module": "absences",
     "phrase": "Record count"
+  },
+  {
+    "id": 3,
+    "module": "absences",
+    "phrase": "Delete absence"
+  },
+  {
+    "id": 4,
+    "module": "absences",
+    "phrase": "Edit absence"
   }
 ]

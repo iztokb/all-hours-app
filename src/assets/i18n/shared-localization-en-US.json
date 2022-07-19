@@ -28,5 +28,15 @@
     "id": 6,
     "module": "shared",
     "phrase": "Load data"
+  },
+  {
+    "id": 7,
+    "module": "shared",
+    "phrase": "List is empty"
+  },
+  {
+    "id": 8,
+    "module": "shared",
+    "phrase": "No records meet the criteria"
   }
 ]

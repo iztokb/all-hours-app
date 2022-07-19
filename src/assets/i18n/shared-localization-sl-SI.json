@@ -28,5 +28,15 @@
     "id": 6,
     "module": "shared",
     "phrase": "Pridobi podatke"
+  },
+  {
+    "id": 7,
+    "module": "shared",
+    "phrase": "Seznam je prazen"
+  },
+  {
+    "id": 8,
+    "module": "shared",
+    "phrase": "Noben zapis ne ustreza pogojem"
   }
 ]
