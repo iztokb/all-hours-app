@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "module": "absences",
+    "phrase": "Odsotnosti"
+  },
+  {
+    "id": 2,
+    "module": "absences",
+    "phrase": "Število zapisov"
+  }
+]
