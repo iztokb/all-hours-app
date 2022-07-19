@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import {
   BaseService,
   I18nService,
@@ -30,27 +30,30 @@ export class ModuleInitService
   }
 
   initModule(options: void): void {
-    this._I18nService.activeLocalization$
-      .pipe(filter((stream) => stream !== null))
-      .subscribe((activeLocale) => {
-        if (!activeLocale || typeof activeLocale === 'undefined') {
-          return;
-        }
+    const localizationSubscription: Subscription =
+      this._I18nService.activeLocalization$
+        .pipe(filter((stream) => stream !== null))
+        .subscribe((activeLocale) => {
+          if (!activeLocale || typeof activeLocale === 'undefined') {
+            return;
+          }
 
-        if (
-          this.loadLocalizationDispatched?.dispatched &&
-          this.loadLocalizationDispatched.localization ===
-            activeLocale.signature
-        ) {
-          return;
-        }
-        this._I18nService.loadModuleLocalizations(activeLocale, 'users');
+          if (
+            this.loadLocalizationDispatched?.dispatched &&
+            this.loadLocalizationDispatched.localization ===
+              activeLocale.signature
+          ) {
+            return;
+          }
+          this._I18nService.loadModuleLocalizations(activeLocale, 'users');
 
-        this.loadLocalizationDispatched = {
-          dispatched: true,
-          localization: activeLocale.signature,
-        };
-      });
+          this.loadLocalizationDispatched = {
+            dispatched: true,
+            localization: activeLocale.signature,
+          };
+        });
+
+    this.subscriptions.push(localizationSubscription);
 
     this._store.dispatch(LoadUsersAction());
     this._store.dispatch(LoadAbsenceDefinitionsAction());
