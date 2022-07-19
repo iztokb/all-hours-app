@@ -2,7 +2,15 @@
   <div class="identifier-container">
     <div class="record-status-container"></div>
     <div class="photo-container">
-      {{ absence?.IconId }}
+      <mat-icon
+        [matTooltip]="
+          absence?.AbsenceDefinitionName ? absence.AbsenceDefinitionName : ''
+        "
+        class="photo-border photo"
+        >{{
+          absence?.AbsenceDefinitionId | translateIconIdToMaterialIcon
+        }}</mat-icon
+      >
     </div>
     <div class="record-identifier-container">
       <div class="record-identifier">

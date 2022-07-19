@@ -26,7 +26,10 @@ import {
 import { ModuleInitService } from './services';
 import { AbsencesModuleEffects, AbsencesModuleReducer } from './store';
 import { AbsencesListItemComponent } from './components';
-import { ValidateAbsenceFormRecordInputPipe } from './pipes';
+import {
+  TranslateIconIdToMaterialIconPipe,
+  ValidateAbsenceFormRecordInputPipe,
+} from './pipes';
 
 const MODULE_ROUTES: Routes = [
   {
@@ -40,6 +43,7 @@ const MODULE_ROUTES: Routes = [
     AbsencesContainerComponent,
     AbsencesListItemComponent,
     PopUpContainerComponent,
+    TranslateIconIdToMaterialIconPipe,
     ValidateAbsenceFormRecordInputPipe,
   ],
   imports: [
