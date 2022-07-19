@@ -10,9 +10,14 @@
         <mat-form-field [floatLabel]="'always'">
           <mat-label>{{ "common-forms-13" | i18nPhrase }}</mat-label>
           <mat-select
+            [compareWith]="compareLists"
             [placeholder]="'common-forms-12' | i18nPhrase"
             formControlName="absenceType"
-          ></mat-select>
+          >
+            <mat-option *ngFor="let record of absenceTypeList" [value]="record">
+              {{ record?.value }}
+            </mat-option>
+          </mat-select>
           <mat-error *ngIf="form.get('absenceType')?.errors as errors">
             <span *ngIf="errors['required']">
               {{ "common-forms-4" | i18nPhrase }}
@@ -24,10 +29,15 @@
         <mat-form-field [floatLabel]="'always'">
           <mat-label>{{ "common-forms-14" | i18nPhrase }}</mat-label>
           <mat-select
+            [compareWith]="compareUsersLists"
             [placeholder]="'common-forms-12' | i18nPhrase"
-            formControlName="absenceType"
-          ></mat-select>
-          <mat-error *ngIf="form.get('absenceType')?.errors as errors">
+            formControlName="user"
+          >
+            <mat-option *ngFor="let record of users" [value]="record">
+              {{ record?.FirstName }} {{ record?.LastName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('user')?.errors as errors">
             <span *ngIf="errors['required']">
               {{ "common-forms-4" | i18nPhrase }}
             </span>
@@ -38,7 +48,7 @@
         <mat-form-field [floatLabel]="'always'">
           <mat-label>{{ "common-forms-15" | i18nPhrase }}</mat-label>
           <textarea
-            class="token-form-control"
+            class="text-area-form-control"
             matInput
             cdkTextareaAutosize
             [placeholder]="'common-forms-16' | i18nPhrase"
@@ -58,15 +68,15 @@
           <mat-label>{{ "common-forms-17" | i18nPhrase }}</mat-label>
           <input
             matInput
-            [matDatepicker]="datepicker"
+            [matDatepicker]="datepickerFrom"
             [placeholder]="'common-forms-16' | i18nPhrase"
             formControlName="from"
           />
           <mat-datepicker-toggle
             matSuffix
-            [for]="datepicker"
+            [for]="datepickerFrom"
           ></mat-datepicker-toggle>
-          <mat-datepicker #datepicker>
+          <mat-datepicker #datepickerFrom>
             <mat-datepicker-actions>
               <button mat-button matDatepickerCancel>
                 {{ "common-forms-20" | i18nPhrase }}
@@ -88,15 +98,15 @@
           <mat-label>{{ "common-forms-18" | i18nPhrase }}</mat-label>
           <input
             matInput
-            [matDatepicker]="datepicker"
+            [matDatepicker]="datepickerTo"
             [placeholder]="'common-forms-16' | i18nPhrase"
             formControlName="to"
           />
           <mat-datepicker-toggle
             matSuffix
-            [for]="datepicker"
+            [for]="datepickerTo"
           ></mat-datepicker-toggle>
-          <mat-datepicker #datepicker>
+          <mat-datepicker #datepickerTo>
             <mat-datepicker-actions>
               <button mat-button matDatepickerCancel>
                 {{ "common-forms-20" | i18nPhrase }}

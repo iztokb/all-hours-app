@@ -10,6 +10,13 @@ export interface IAbsenceDefinition {
   Fraction: number;
 }
 
+export interface IAbsenceUser {
+  FirstName: string;
+  Id: string;
+  LastName: string;
+  MiddleName: string;
+}
+
 export interface IAbsence {
   Id: string;
   UserId: string;
@@ -40,6 +47,7 @@ export interface IAbsence {
 
 export interface IAbsenceApiPayload {
   UserId: string;
+  Id?: string;
   Timestamp: Date | null;
   AbsenceDefinitionId: string;
   Origin: number;

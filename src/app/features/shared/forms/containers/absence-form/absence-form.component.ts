@@ -13,7 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ICatalogue } from 'src/app/core';
-import { IAbsence } from '../../../api-models';
+import { IAbsence, IAbsenceUser } from '../../../api-models';
 
 @Component({
   selector: 'app-absence-form',
@@ -34,6 +34,8 @@ export class AbsenceFormComponent implements OnInit {
   /**
    * INPUTS
    */
+  @Input() absenceTypeList: ICatalogue[] | null = [];
+
   private _record!: IAbsence | undefined;
   @Input()
   set record(value: IAbsence | undefined) {
@@ -49,10 +51,13 @@ export class AbsenceFormComponent implements OnInit {
 
   @Input() submitInProgress!: boolean;
 
+  @Input() users: IAbsenceUser[] | null = [];
+
   /**
    * OTHER PROPS
    */
   form!: FormGroup;
+  protected pickerStartDate = new Date();
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -64,6 +69,22 @@ export class AbsenceFormComponent implements OnInit {
 
   cancelClicked() {
     this.cancel.emit();
+  }
+
+  compareLists(valueFromList: ICatalogue, selectedValue: ICatalogue) {
+    if (!valueFromList || !selectedValue) {
+      return false;
+    }
+
+    return valueFromList.signature === selectedValue.signature;
+  }
+
+  compareUsersLists(valueFromList: IAbsenceUser, selectedValue: IAbsenceUser) {
+    if (!valueFromList || !selectedValue) {
+      return false;
+    }
+
+    return valueFromList.Id === selectedValue.Id;
   }
 
   saveFormClicked(originalRecord: IAbsence): void {
@@ -99,11 +120,11 @@ export class AbsenceFormComponent implements OnInit {
       visible: true,
     };
 
-    const user: ICatalogue = {
-      disabled: false,
-      signature: record?.UserId,
-      value: `${record?.FirstName} ${record?.LastName}`,
-      visible: true,
+    const user: IAbsenceUser = {
+      FirstName: record?.FirstName ? record?.FirstName : '',
+      Id: record.UserId,
+      LastName: record?.LastName ? record.LastName : '',
+      MiddleName: record?.MiddleName ? record.MiddleName : '',
     };
 
     this.form.setValue({
@@ -119,9 +140,14 @@ export class AbsenceFormComponent implements OnInit {
     return {
       ...originalRecord,
       AbsenceDefinitionId: this.form.get('absenceType')?.value?.signature,
+      AbsenceDefinitionName: this.form.get('absenceType')?.value?.value,
+      Comment: this.form.get('comment')?.value,
+      FirstName: this.form.get('user')?.value?.FirstName,
+      LastName: this.form.get('user')?.value?.LastName,
+      MiddleName: this.form.get('user')?.value?.MiddleName,
       PartialTimeFrom: this.form.get('from')?.value,
       PartialTimeTo: this.form.get('to')?.value,
-      UserId: this.form.get('user')?.value?.signature,
+      UserId: this.form.get('user')?.value?.Id,
     };
   }
 }
