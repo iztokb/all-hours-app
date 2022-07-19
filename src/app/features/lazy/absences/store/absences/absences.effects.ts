@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, exhaustMap, catchError } from 'rxjs';
 import { HttpService } from 'src/app/core';
-import { IAbsence } from 'src/app/features/shared/api-models';
+import {
+  IAbsence,
+  IAbsenceApiPayload,
+} from 'src/app/features/shared/api-models';
 import { TransformDataRequestPayloadToQueryParams } from '../../utils';
 import * as absencesActions from './absences.actions';
 
@@ -53,4 +56,34 @@ export class AbsencesEffects {
       })
     );
   });
+
+  updateAbsence$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(absencesActions.UpdateAbsenceAction),
+      exhaustMap((req) => {
+        return this._httpService
+          .put<IAbsenceApiPayload>(
+            `vi/Users/${req.record.Id}`,
+            false,
+            req.record,
+            null,
+            null,
+            true
+          )
+          .pipe(
+            switchMap((res) => {
+              const payload = res as unknown as IAbsence;
+              return [
+                absencesActions.UpdateAbsenceSuccessAction({
+                  absence: payload,
+                }),
+              ];
+            }),
+            catchError((error) => {
+              return [absencesActions.UpdateAbsenceFailedAction({ error })];
+            })
+          );
+      })
+    )
+  );
 }

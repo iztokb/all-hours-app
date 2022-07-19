@@ -12,7 +12,7 @@ import { IAbsence } from 'src/app/features/shared/api-models';
 import { ILoadDataOnDemand, IProvidedPeriodChooser, ISearch } from 'src/app/features/shared/data-settings';
 import { IPopupData, SupportedPopupContent } from '../../models';
 import { ModuleInitService } from '../../services';
-import { AbsencesSearchChangedAction, LoadAbsencesAction, getAbsencesList$, DeleteAbsenceAction } from '../../store';
+import { AbsencesSearchChangedAction, LoadAbsencesAction, getAbsencesList$, DeleteAbsenceAction, UpdateAbsenceAction } from '../../store';
 import { GetCurrentMonthStartAndEndDates } from '../../utils';
 import { PopUpContainerComponent } from '../pop-up-container/pop-up-container.component';
 
@@ -124,7 +124,8 @@ export class AbsencesContainerComponent implements OnInit, OnDestroy {
           return;
         } else {
           console.log('Record to be submitted', result)
-
+          const recordToBeSubmittted = result as unknown as IAbsence;
+          this._store.dispatch(UpdateAbsenceAction({record: recordToBeSubmittted}))
         }
       });
   }
