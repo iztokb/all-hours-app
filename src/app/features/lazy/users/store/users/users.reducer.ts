@@ -1,6 +1,7 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { IUser, IUsersState } from '../../models';
+import { IUser } from 'src/app/features/shared/api-models';
+import { IUsersState } from '../../models';
 import * as usersActions from './users.actions';
 
 const usersAdapter: EntityAdapter<IUser> = createEntityAdapter<IUser>({

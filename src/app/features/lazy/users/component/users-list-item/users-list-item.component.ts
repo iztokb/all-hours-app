@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { IUser } from '../../models';
+import { IUser } from 'src/app/features/shared/api-models';
 
 @Component({
   selector: 'app-users-list-item',

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IAbsence } from 'src/app/features/shared/api-models';
-import { IUser } from '../../models';
+import { IUser } from 'src/app/features/shared/api-models';
 
 export const DeleteUserAction = createAction(
   '[Users] Delete user',

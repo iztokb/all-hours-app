@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IPopupData, IUser } from '../models';
+import { IUser } from 'src/app/features/shared/api-models';
+import { IPopupData } from '../models';
 import { PrepareEmptyUserRecord } from '../utils';
 
 @Pipe({

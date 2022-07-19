@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { EscapeRegex, ICatalogue } from 'src/app/core';
-import { IAbsenceUser } from 'src/app/features/shared/api-models';
-import { IUser, IUsersModulestate } from '../../models';
+import { IAbsenceUser, IUser } from 'src/app/features/shared/api-models';
+import { IUsersModulestate } from '../../models';
 
 export const getUsersFeatureSlice$ =
   createFeatureSelector<IUsersModulestate>('users');

@@ -5,9 +5,9 @@ import { catchError, concatMap, exhaustMap, switchMap } from 'rxjs/operators';
 import { Observable, EMPTY } from 'rxjs';
 import * as usersActions from './users.actions';
 import { HttpService } from 'src/app/core';
-import { IUser, IUserApiPayload } from '../../models';
+import { IUserApiPayload } from '../../models';
 import { TransformNewUserToApiInteface } from '../../utils';
-import { IAbsenceApiPayload } from 'src/app/features/shared/api-models';
+import { IAbsenceApiPayload, IUser } from 'src/app/features/shared/api-models';
 import { TransformAbsenceRecordToApiInterface } from 'src/app/features/shared/forms';
 
 @Injectable()

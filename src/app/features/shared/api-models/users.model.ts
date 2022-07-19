@@ -1,9 +1,10 @@
-import { EntityState } from '@ngrx/entity';
-import { IUser } from 'src/app/features/shared/api-models';
-import { IAbsenceDefinitionState } from './absences.model';
-
-export interface IUserApiPayload {
-  Id?: string;
+/**
+ * @interface IUser
+ * @description
+ * User entity
+ */
+export interface IUser {
+  Id: string;
   FirstName: string;
   LastName: string;
   MiddleName: string;
@@ -34,21 +35,4 @@ export interface IUserApiPayload {
   UserAccountId: string | null;
   CalculationStartDate: string | null;
   CalculationStopDate: null;
-}
-
-export interface IUsersState extends EntityState<IUser> {
-  activeSearch: string;
-  deleted: boolean;
-  deleting: boolean;
-  loaded: boolean;
-  loading: boolean;
-  posted: boolean;
-  posting: boolean;
-  updated: boolean;
-  updating: boolean;
-}
-
-export interface IUsersModulestate {
-  absence_definitions: IAbsenceDefinitionState;
-  users: IUsersState;
 }

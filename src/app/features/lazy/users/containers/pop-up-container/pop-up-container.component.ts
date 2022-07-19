@@ -12,8 +12,12 @@ import {
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IApplicationState, ICatalogue } from 'src/app/core';
-import { IAbsence, IAbsenceUser } from 'src/app/features/shared/api-models';
-import { IPopupData, IUser, SupportedPopupContent } from '../../models';
+import {
+  IAbsence,
+  IAbsenceUser,
+  IUser,
+} from 'src/app/features/shared/api-models';
+import { IPopupData, SupportedPopupContent } from '../../models';
 import { getAbsencesListForSelect$, getUsersListForSelect$ } from '../../store';
 
 @Component({

@@ -1,4 +1,5 @@
-import { IUser, IUserApiPayload } from '../models';
+import { IUser } from 'src/app/features/shared/api-models';
+import { IUserApiPayload } from '../models';
 
 export const PrepareEmptyUserRecord = (): IUser => {
   return {

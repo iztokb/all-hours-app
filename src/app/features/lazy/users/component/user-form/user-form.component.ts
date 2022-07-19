@@ -12,7 +12,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { IUser } from '../../models';
+import { IUser } from 'src/app/features/shared/api-models';
 
 @Component({
   selector: 'app-user-form',

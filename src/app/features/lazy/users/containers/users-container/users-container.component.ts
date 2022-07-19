@@ -16,10 +16,10 @@ import {
   ILocalization,
   SidenavStatus,
 } from 'src/app/core';
-import { IAbsence } from 'src/app/features/shared/api-models';
+import { IAbsence, IUser } from 'src/app/features/shared/api-models';
 import { ISearch } from 'src/app/features/shared/data-settings';
 import { PrepareEmptyAbsenceRecord } from 'src/app/features/shared/forms';
-import { IPopupData, IUser, SupportedPopupContent, SupportedPopupContentSignatures } from '../../models';
+import { IPopupData, SupportedPopupContent, SupportedPopupContentSignatures } from '../../models';
 import { ModuleInitService } from '../../services';
 import { DeleteUserAction, getUsersList$, PostUserAbsenceAction, PostUserAction, UpdateUserAction, UsersSearchChangedAction } from '../../store';
 import { PrepareEmptyUserRecord } from '../../utils';

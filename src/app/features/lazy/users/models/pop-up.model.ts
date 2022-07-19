@@ -1,5 +1,4 @@
-import { IAbsence } from 'src/app/features/shared/api-models';
-import { IUser } from './users.model';
+import { IAbsence, IUser } from 'src/app/features/shared/api-models';
 
 /**
  * @type SupportedPopupContentSignatures
