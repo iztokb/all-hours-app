@@ -27,3 +27,14 @@ export const SUPPORTED_LOCALIZATIONS_LIST: ILocalization[] = [
     visible: true,
   },
 ];
+
+export const ResolveStoredLocalization = (
+  storageKey: string
+): string | null => {
+  if (window?.localStorage) {
+    const storedLocalization = window?.localStorage.getItem('LOCALIZATION');
+    return storedLocalization;
+  }
+
+  return 'sl-SI';
+};

@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import commonLocaleEn from '@angular/common/locales/en';
 import extraLocaleEn from '@angular/common/locales/extra/en';
 import extraLocaleSl from '@angular/common/locales/extra/sl';
 import commonLocaleSl from '@angular/common/locales/sl';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  MatNativeDateModule,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import { AllHoursCoreModule } from './core/all-hours-core.module';
 
 /**
@@ -45,7 +49,6 @@ import {
   MatLocaleProvider,
 } from './core';
 import { registerLocaleData } from '@angular/common';
-import { DateAdapter } from '@angular/material/core';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -57,8 +60,9 @@ import { DateAdapter } from '@angular/material/core';
   ],
   providers: [
     LocaleProvider,
-    MatLocaleProvider,
+    /*  MatLocaleProvider, */
     { provide: MAT_DATE_LOCALE, useValue: 'sl-SI' },
+    /* { provide: LOCALE_ID, useValue: 'sl' }, */
   ],
   bootstrap: [AppComponent],
 })

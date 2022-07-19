@@ -1,3 +1,5 @@
+export type CrudMethods = 'DELETE' | 'GET' | 'POST' | 'PUT';
+
 /**
  * @interface ICatalogue
  * @description
