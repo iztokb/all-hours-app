@@ -1,5 +1,7 @@
 import { EntityState } from '@ngrx/entity';
 import { IAbsence } from 'src/app/features/shared/api-models';
+import { IAbsenceDefinitionState } from './absence-type.model';
+import { IUsersState } from './users.model';
 
 export interface IAbsencesState extends EntityState<IAbsence> {
   activeSearch: string;
@@ -14,5 +16,7 @@ export interface IAbsencesState extends EntityState<IAbsence> {
 }
 
 export interface IAbsencesModuleState {
+  absence_definitions: IAbsenceDefinitionState;
   absences: IAbsencesState;
+  users: IUsersState;
 }

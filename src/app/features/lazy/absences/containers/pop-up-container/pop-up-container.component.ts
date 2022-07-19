@@ -9,9 +9,12 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { IApplicationState } from 'src/app/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { IApplicationState, ICatalogue } from 'src/app/core';
+import { IAbsenceUser } from 'src/app/features/shared/api-models';
 import { IPopupData, SupportedPopupContent } from '../../models';
+import { getAbsencesListForSelect$, getUsersListForSelect$ } from '../../store';
 
 @Component({
   selector: 'app-pop-up-container',
@@ -20,6 +23,16 @@ import { IPopupData, SupportedPopupContent } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopUpContainerComponent implements OnInit {
+  /**
+   * Absences definition list
+   */
+  absencesDefinitionList$!: Observable<ICatalogue[]>;
+
+  /**
+   * Users list
+   */
+  usersList$!: Observable<IAbsenceUser[]>;
+
   /**
    * @description
    * Popup input data
@@ -46,7 +59,13 @@ export class PopUpContainerComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.absencesDefinitionList$ = this._store.pipe(
+      select(getAbsencesListForSelect$)
+    );
+
+    this.usersList$ = this._store.pipe(select(getUsersListForSelect$));
+  }
 
   closeDialog(): void {
     this._dialogRef.close(null);

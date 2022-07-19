@@ -12,7 +12,9 @@
     ></app-dialog-title>
     <div class="content-container">
       <app-absence-form
+        [absenceTypeList]="absencesDefinitionList$ | async"
         [record]="popUpData | validateAbsenceFormRecordInput"
+        [users]="usersList$ | async"
         (cancel)="closeDialog()"
         (saveRecord)="submitForm($event)"
       ></app-absence-form>
