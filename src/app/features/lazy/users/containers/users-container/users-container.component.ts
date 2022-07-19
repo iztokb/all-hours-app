@@ -47,6 +47,11 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
     private _I18nService: I18nService,
     private _moduleInitService: ModuleInitService
   ) {
+  }
+
+  ngOnInit(): void {
+    this._moduleInitService.initModule();
+
     this.activeLocalization$ = this._I18nService.activeLocalization$;
     this.deviceEnvironment$ = this._environmentService.deviceEnvironment$;
 
@@ -56,11 +61,9 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
     this.usersList$ = this._store.pipe(select(getUsersList$));
   }
 
-  ngOnInit(): void {
-    this._moduleInitService.initModule();
-  }
-
   ngOnDestroy(): void {
+    this._unsubscribe.next();
+    this._unsubscribe.complete();
     this._moduleInitService.teardownModule();
   }
 
